@@ -1,0 +1,62 @@
+/*1. VARIABLES, FUENTES Y CONFIGURACIÓN GLOBAL*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de colores */
+  --color-fondo: #0F1C1A;             /* Verde bosque casi negro */
+  --color-superficie: #182C29;        /* Verde petróleo oscuro (Tarjetas y Navbar)*/
+  --color-borde: #25423E;             /* Esmeralda muy apagado para líneas */
+  
+  /* Acentos Brillantes */
+  --color-primario: #38C7B4;          /* Esmeralda brillante (Acciones principales) */
+  --color-primario-hover: #26A594;    
+  --color-secundario: #F4A261;        /* Naranja vibrante (Rachas, tienda, ligas) */
+  --color-secundario-hover: #D88346;  
+  
+  /* Textos */
+  --color-texto-principal: #FDFDF9;   /* Blanco cálido */
+  --color-texto-mutado: #9BAEBC;      /* Gris acero claro */
+  --color-error: #E63946;             /* Rojo intenso para errores */
+
+  /* Tipografía */
+  --fuente-principal: 'Inter', sans-serif;
+  
+  /* Tamaños de Texto */
+  --texto-titulo: 2rem;               
+  --texto-subtitulo: 1.5rem;          
+  --texto-seccion: 1.25rem;           
+  --texto-normal: 1rem;               
+  --texto-chico: 0.875rem;            
+
+  /* Espaciados */
+  --espaciado-chico: 8px;
+  --espaciado-medio: 16px;
+  --espaciado-grande: 24px;
+  --espaciado-seccion: 40px;
+
+  /* Bordes y Sombras */
+  --radio-borde: 14px;
+  --sombra-tarjeta: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Reseteo Universal */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto-principal);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Jerarquía de Textos */
+h1 { font-size: var(--texto-titulo); font-weight: 700; margin-bottom: var(--espaciado-grande); }
+h2 { font-size: var(--texto-subtitulo); font-weight: 700; margin-bottom: var(--espaciado-medio); }
+p { font-size: var(--texto-normal); font-weight: 400; margin-bottom: var(--espaciado-medio); }
+.texto-chico { font-size: var(--texto-chico); color: var(--color-texto-mutado); }
