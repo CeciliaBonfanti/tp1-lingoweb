@@ -49,3 +49,22 @@
     align-items: center;
     gap: 5px;
 }
+
+/*BOTON DEL FOOTER*/
+.footer{
+    width: 100%;
+    padding: var(--espaciado-grande);
+    
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+
+    background-color: var(--color-superficie);
+    border-top: 1px solid var(--color-borde);
+}
+.btn-comprobar{
+    width: 100%;
+    max-width: 800px;
+}
