@@ -1,0 +1,51 @@
+/*ESTILOS DE LA NAVBAR DE LA VISTA LECCION */
+
+/*BARRA DE PROGRESO*/
+.progreso-60 {
+    width: 60%;
+}
+
+.grupo-progreso {
+    flex-grow: 1; 
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre la barra y el 60% */
+    max-width: 500px; 
+    margin: 0 var(--espaciado-grande);
+}
+
+.barra-progreso-contenedor {
+    flex-grow: 1; /* La barra absorbe el espacio que deja el texto */
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+}
+
+.barra-progreso-relleno {
+    height: 100%; /* Toma la altura de los 16px del padre */
+    background-color: var(--color-primario);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.nav-texto {
+    font-weight: 600;
+    font-size: var(--texto-normal);
+    color: var(--color-texto-principal);
+}
+
+/*INDICADOR DE VIDA*/
+
+.grupo-indicador-vida {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-medio);
+}
+
+.contenedor-corazones{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
