@@ -11,6 +11,58 @@
     <link rel="stylesheet" href="../css/ranking.css">
 </head>
 <body>
-    
+   <nav class="navbar">
+        <a href="dashboard.html" class="nav-marca">LingoWeb</a>
+        <ul class="nav-enlaces">
+             <li><a href="dashboard.html">Cursos</a></li>
+             <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+        </ul>
+    </nav>
+    <main class="contenedor-pagina">
+        <h1>🏆 Tabla de Clasificacion:</h1>
+        <label for="liga">Liga actual: 
+  <select id="liga" name="liga">
+    <option value="bronce">Liga de Bronce</option>
+    <option value="plata">Liga de Plata</option>
+    <option value="oro">Liga de Oro</option>
+  </select>
+</label>
+        <p class="texto-chico">Los primeros 5 ascienden a la liga de Plata esta semana</p>
+        <table>
+  <thead>
+    <tr>
+      <th>Puesto</th>
+      <th>Avatar</th>
+      <th>Estudiante</th>
+      <th>XP Semanal</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🥇1</td>
+      <td class="avatar">MG</td>
+      <td>MariaG_22</td>
+      <td>850 XP</td>
+      <td>Zona de Ascenso</td>
+    </tr>
+    <tr class="fila-usuario">
+      <td>🥈2</td>
+      <td class="avatar">JP</td>
+      <td>JuanPerez (Tú)</td>
+      <td>720 XP</td>
+      <td>Zona de Ascenso</td>
+    </tr>
+    <tr>
+      <td>🥉3</td>
+      <td class="avatar">CD</td>
+      <td>Carlos_Dev</td>
+      <td>610 XP</td>
+      <td>Zona de Ascenso</td>
+    </tr>
+  </tbody>
+</table>
+    </main> 
 </body>
 </html>
