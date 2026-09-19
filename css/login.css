@@ -1,0 +1,65 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: var(--espaciado-medio);
+}
+
+.login-header .nav-marca {
+  font-size: 2.5rem;
+}
+
+.tarjeta-login {
+  width: 100%;
+}
+
+.campo-grupo {
+  margin-bottom: var(--espaciado-medio);
+}
+
+.campo-grupo label {
+  display: block;
+  font-size: var(--texto-chico);
+  color: var(--color-texto-mutado);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.btn-bloque {
+  width: 100%;
+  margin-top: var(--espaciado-chico);
+}
+
+.login-enlaces {
+  margin-top: var(--espaciado-grande);
+  text-align: center;
+  font-size: var(--texto-chico);
+}
+
+.enlace-secundario {
+  color: var(--color-texto-mutado);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.enlace-secundario:hover {
+  color: var(--color-primario);
+}
+
+.separador {
+  margin: 0 var(--espaciado-chico);
+  color: var(--color-borde);
+}

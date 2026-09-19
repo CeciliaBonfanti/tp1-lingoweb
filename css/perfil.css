@@ -1,0 +1,49 @@
+.grilla-perfil {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--espaciado-grande);
+  margin-top: var(--espaciado-grande);
+}
+
+.perfil-cabecera {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-contenedor {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--color-primario);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--espaciado-medio);
+}
+
+.avatar-placeholder {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-fondo);
+}
+
+.separador-forma {
+  border: none;
+  border-top: 1px solid var(--color-borde);
+  margin: var(--espaciado-grande) 0;
+}
+
+.acciones-perfil {
+  display: flex;
+  gap: var(--espaciado-medio);
+  margin-top: var(--espaciado-grande);
+}
+
+/* Responsivo para celulares */
+@media (max-width: 768px) {
+  .grilla-perfil {
+    grid-template-columns: 1fr;
+  }
+}
