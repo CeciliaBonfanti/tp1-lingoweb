@@ -1,6 +1,6 @@
 /*ESTILOS DE LA NAVBAR DE LA VISTA LECCION */
 
-/*BARRA DE PROGRESO*/
+/*BARRA DE PROGRESO DEL NAV*/
 .progreso-60 {
     width: 60%;
 }
@@ -9,7 +9,7 @@
     flex-grow: 1; 
     display: flex;
     align-items: center;
-    gap: 12px; /* Espacio entre la barra y el 60% */
+    gap: 12px;
     max-width: 500px; 
     margin: 0 var(--espaciado-grande);
 }
@@ -24,7 +24,7 @@
 }
 
 .barra-progreso-relleno {
-    height: 100%; /* Toma la altura de los 16px del padre */
+    height: 100%;
     background-color: var(--color-primario);
     border-radius: 20px;
     transition: width 0.3s ease;
@@ -36,7 +36,7 @@
     color: var(--color-texto-principal);
 }
 
-/*INDICADOR DE VIDA*/
+/*INDICADOR DE VIDA DEL NAV*/
 
 .grupo-indicador-vida {
     display: flex;
@@ -51,20 +51,104 @@
 }
 
 /*BOTON DEL FOOTER*/
-.footer{
-    width: 100%;
-    padding: var(--espaciado-grande);
-    
+
+.footer {
+    margin-top: auto;
     display: flex;
     justify-content: center;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-
+    align-items: center;
+    padding: var(--espaciado-grande);
     background-color: var(--color-superficie);
     border-top: 1px solid var(--color-borde);
 }
-.btn-comprobar{
+
+/* BOTÓN DE COMPROBAR*/
+.btn-comprobar {
     width: 100%;
-    max-width: 800px;
+    max-width: 300px;
+    font-size: var(--texto-seccion); 
+    padding: 16px var(--espaciado-grande);
+}
+
+/*BODY-MAIN*/
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-pagina {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--espaciado-medio); 
+}
+
+.area-ejercicio {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.area-ejercicio h2 {
+    margin-bottom: var(--espaciado-medio);
+}
+
+.oracion p {
+    font-size: var(--texto-subtitulo);
+    font-style: italic; 
+    margin-bottom: var(--espaciado-seccion);
+}
+
+/* ZONA DE RESPUESTA Y LÍNEA SEPARADORA */
+.area-respuesta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 60px;
+    padding-bottom: var(--espaciado-grande);
+    border-bottom: 2px solid var(--color-borde);
+    margin-bottom: var(--espaciado-grande);
+}
+
+/* BLOQUES DE PALABRAS (Tarjetas interactivas) */
+.palabra {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--color-superficie);
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    font-weight: 600;
+    font-size: var(--texto-normal);
+    color: var(--color-texto-principal);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.palabra:hover {
+    border-color: var(--color-primario);
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* BANCO DE PALABRAS */
+.area-palabras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: var(--espaciado-medio);
 }
