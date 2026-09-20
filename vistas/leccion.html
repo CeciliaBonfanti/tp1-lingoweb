@@ -57,8 +57,33 @@
             </article>
         </section>
     </main>
-    <footer class="footer">
-        <button class="btn btn-primario btn-comprobar">Comprobar Respuestas</button>
+    <footer class="footer" id="footer-leccion">
+    
+        <!-- ESTADO NORMAL -->
+        <div class="estado-footer estado-normal">
+            <a href="#estado-exito" class="btn btn-primario btn-accion">Comprobar Respuesta</a>
+        </div>
+
+        <!-- ESTADO ÉXITO -->
+        <div id="estado-exito" class="estado-footer estado-exito">
+            <div class="feedback-textos">
+                <p class="titulo-exito"><strong>¡Excelente!</strong></p>
+                <p class="texto-significado">Significado: Buenos días, ¿cómo estás?</p>
+            </div>
+            <a href="#" type="button" class="btn btn-primario btn-accion">Continuar</a>
+        </div>
+
+        <!-- ESTADO ERROR -->
+        <div id="estado-error" class="estado-footer estado-error oculto">
+            <div class="feedback-textos">
+                <p class="titulo-error"><strong>¡Respuesta incorrecta!</strong></p>
+                <p class="texto-significado">Solución: Buenos días, ¿cómo estás?</p>
+            </div>
+            <a href="#" class="btn btn-error btn-accion">Continuar</a> 
+        </div>
+    
     </footer>
+    
+    
 </body>
 </html>
