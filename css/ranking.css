@@ -13,3 +13,6 @@ background-color: yellow;
   line-height: 2rem;
   font-weight: 600;
 }
+.tabla-scroll {
+  overflow-x: auto;
+}

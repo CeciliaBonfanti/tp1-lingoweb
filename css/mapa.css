@@ -1,3 +1,8 @@
 .bloqueda {
     opacity: 0.5;
 }
+@media screen and (max-widt: 768px){
+    .grilla-tarjetas {
+        flex-direction: column;
+    }
+}
