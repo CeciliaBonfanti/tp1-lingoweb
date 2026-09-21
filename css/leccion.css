@@ -223,3 +223,290 @@ a.btn {
     background-color: #d62828;
     box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
 }
+
+/*ESTILOS DE LA NAVBAR DE LA VISTA LECCION */
+
+/*BARRA DE PROGRESO DEL NAV*/
+.progreso-60 {
+    width: 60%;
+}
+
+.grupo-progreso {
+    flex-grow: 1; 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 500px; 
+    margin: 0 var(--espaciado-grande);
+}
+
+.barra-progreso-contenedor {
+    flex-grow: 1; /* La barra absorbe el espacio que deja el texto */
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+}
+
+.barra-progreso-relleno {
+    height: 100%;
+    background-color: var(--color-primario);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.nav-texto {
+    font-weight: 600;
+    font-size: var(--texto-normal);
+    color: var(--color-texto-principal);
+}
+
+/*INDICADOR DE VIDA DEL NAV*/
+
+.grupo-indicador-vida {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-medio);
+}
+
+.contenedor-corazones{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/*BODY-MAIN*/
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-pagina {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--espaciado-medio); 
+}
+
+.area-ejercicio {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.area-ejercicio h2 {
+    margin-bottom: var(--espaciado-medio);
+}
+
+.oracion p {
+    font-size: var(--texto-subtitulo);
+    font-style: italic; 
+    margin-bottom: var(--espaciado-seccion);
+}
+
+/* ZONA DE RESPUESTA Y LÍNEA SEPARADORA */
+.area-respuesta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 60px;
+    padding-bottom: var(--espaciado-grande);
+    border-bottom: 2px solid var(--color-borde);
+    margin-bottom: var(--espaciado-grande);
+}
+
+/* BLOQUES DE PALABRAS */
+.palabra {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--color-superficie);
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    font-weight: 600;
+    font-size: var(--texto-normal);
+    color: var(--color-texto-principal);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.palabra:hover {
+    border-color: var(--color-primario);
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* BANCO DE PALABRAS */
+.area-palabras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: var(--espaciado-medio);
+}
+
+/*FOOTER*/
+
+.footer {
+    width: 100%;
+    padding: var(--espaciado-grande);
+    background-color: var(--color-superficie);
+    border-top: 1px solid var(--color-borde);
+    margin-top: auto; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.estado-footer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.estado-normal {
+    justify-content: center;
+}
+
+/*ESTADOS DE LA RESPUESTA EN EL FOOTER*/
+.estado-exito, 
+.estado-error {
+   justify-content: space-around;
+    gap: var(--espaciado-grande);
+
+    display: none;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    padding: var(--espaciado-grande);
+    box-sizing: border-box;
+    background-color: var(--color-superficie);
+    z-index: 10;
+}
+
+#estado-exito:target, #estado-error:target {
+    display: flex;
+}
+
+a.btn {
+    text-decoration: none;
+    text-align: center;
+}
+
+.feedback-textos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.titulo-exito {
+    font-size: var(--texto-subtitulo);
+    color: var(--color-primario);
+    margin: 0;
+}
+
+.titulo-error {
+    font-size: var(--texto-subtitulo);
+    color: var(--color-error);
+    margin: 0;
+}
+
+.texto-significado {
+    font-size: var(--texto-normal);
+    color: var(--color-texto-principal);
+    margin: 0;
+}
+
+.btn-accion {
+    width: 100%;
+    max-width: 300px;
+    padding: 16px var(--espaciado-grande);
+    font-size: var(--texto-seccion);
+}
+
+/* Botón específico para el error (Rojo) */
+.btn-error {
+    background-color: var(--color-error);
+    color: #ffffff;
+}
+
+.btn-error:hover {
+    background-color: #d62828;
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
+}
+
+@media screen and (max-width: 600px) {
+    /* NAVBAR */
+    .navbar {
+        flex-wrap: wrap;
+    }
+    .grupo-indicador-vida { margin-left: auto; }
+    .grupo-indicador-vida .nav-texto { display: none; }
+    .grupo-progreso { order: 3; width: 100%; margin-top: var(--espaciado-chico); }
+
+    /* ÁREA DEL EJERCICIO */
+    .contenedor-pagina {
+        justify-content: center; 
+        padding: var(--espaciado-chico);
+    }
+    
+    .area-ejercicio h2 { margin-bottom: var(--espaciado-chico); font-size: 1.1rem; }
+    .oracion p { margin-bottom: var(--espaciado-medio); font-size: var(--texto-normal); }
+    .area-respuesta { 
+        min-height: 45px; 
+        margin-bottom: var(--espaciado-chico); 
+        padding-bottom: var(--espaciado-chico); 
+    }
+    .area-palabras { margin-top: var(--espaciado-chico); gap: var(--espaciado-chico); }
+    .palabra { 
+        padding: var(--espaciado-chico) 12px; 
+        font-size: var(--texto-chico); 
+    }
+
+    /* FOOTER Y ESTADOS */
+    .footer {
+        padding: var(--espaciado-medio) var(--espaciado-chico);
+    }
+
+    .estado-exito, 
+    .estado-error {
+        position: relative; 
+        height: auto; 
+        flex-direction: column; 
+        align-items: center; 
+        gap: var(--espaciado-chico);
+        padding: var(--espaciado-chico);
+    }
+
+    .feedback-textos {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer:has(#estado-exito:target) .estado-normal,
+    .footer:has(#estado-error:target) .estado-normal {
+        display: none;
+    }
+
+    .btn-accion {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        font-size: var(--texto-normal);
+    }
+}
