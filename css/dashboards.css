@@ -1,0 +1,76 @@
+/* Layout para poner cursos a la izquierda y estadísticas a la derecha */
+.dashboard-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.dashboard-layout .grilla-tarjetas {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Ajustes de las tarjetas de curso */
+.tarjeta-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bandera-img {
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
+  border-radius: 3px;
+  object-fit: contain;
+}
+
+.nivel-texto {
+  font-weight: 600;
+  margin: 8px 0 15px 0;
+}
+
+/* Panel lateral de estadísticas */
+.sidebar-estadisticas {
+  width: 200px;
+}
+
+.tarjeta-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .sidebar-estadisticas {
+    width: 100%;
+    max-width: 360px;
+  }
+}

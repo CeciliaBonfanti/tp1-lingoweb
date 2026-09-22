@@ -7,10 +7,91 @@
     <link rel="stylesheet" href="../css/1-variables.css">
     <link rel="stylesheet" href="../css/2-layout.css">
     <link rel="stylesheet" href="../css/3-botones.css">
-
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboards.css">
 </head>
 <body>
-    
+
+    <!-- BARRA DE NAVEGACIÓN PRINCIPAL -->
+    <nav class="navbar">
+        <a href="dashboard.html" class="nav-marca">LingoWeb</a>
+        <ul class="nav-enlaces">
+            <li><a href="dashboard.html">Cursos</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><span>🔥 5 Días </span></li>
+            <li><span>⚡ 350 XP </span></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="contenedor-pagina">
+        <h1>Mis Cursos de Idiomas</h1>
+
+        <div class="dashboard-layout">
+            
+            <!-- SECCIÓN DE SELECCIÓN DE IDIOMAS (COLUMNA IZQUIERDA) -->
+            <section class="grilla-tarjetas">
+                
+                <!-- Curso 1: Inglés -->
+                <article class="tarjeta">
+                    <div class="tarjeta-header">
+                        <img src="../imagenes/bandera-gb.png" alt="Bandera de Reino Unido" class="bandera-img">
+                        <h2>Inglés desde Español</h2>
+                    </div>
+                    <p class="texto-chico">Progreso: 45%</p>
+                    <p class="nivel-texto">Nivel: Intermedio (B1)</p>
+                    <a href="mapa.html" class="btn btn-primario">Continuar</a>
+                </article>
+
+                <!-- Curso 2: Alemán -->
+                <article class="tarjeta">
+                    <div class="tarjeta-header">
+                        <img src="../imagenes/bandera-de.png" alt="Bandera de Alemania" class="bandera-img">
+                        <h2>Alemán desde Español</h2>
+                    </div>
+                    <p class="texto-chico">Progreso: 12%</p>
+                    <p class="nivel-texto">Nivel: Principiante (A1)</p>
+                    <a href="mapa.html" class="btn btn-primario">Continuar</a>
+                </article>
+
+                <!-- Curso 3: Chino Mandarín -->
+                <article class="tarjeta">
+                    <div class="tarjeta-header">
+                        <img src="../imagenes/bandera-cn.png" alt="Bandera de China" class="bandera-img">
+                        <h2>Chino desde Español</h2>
+                    </div>
+                    <p class="texto-chico">Progreso: 0%</p>
+                    <p class="nivel-texto">Nivel: Inicial (HSK 1)</p>
+                    <a href="mapa.html" class="btn btn-primario">Empezar</a>
+                </article>
+
+            </section>
+
+            <!-- SECCIÓN LATERAL DE RESUMEN (COLUMNA DERECHA) -->
+            <aside class="sidebar-estadisticas">
+                <div class="tarjeta tarjeta-stats">
+                    <h3>Estadísticas</h3>
+                    
+                    <div class="stat-item">
+                        <span class="stat-icon">🏆</span>
+                        <div>
+                            <span class="stat-label">Liga</span>
+                            <strong>Bronce</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-icon">🎯</span>
+                        <div>
+                            <span class="stat-label">Meta</span>
+                            <strong>50 XP/día</strong>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
 </body>
 </html>
