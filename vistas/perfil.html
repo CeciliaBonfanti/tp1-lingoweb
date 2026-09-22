@@ -1,85 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LingoWeb - Perfil de Usuario</title>
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LingoWeb - Perfil de Usuario</title>
 
-  <link rel="stylesheet" href="../css/1-variables.css">
-  <link rel="stylesheet" href="../css/2-layout.css">
-  <link rel="stylesheet" href="../css/3-botones.css">
-  
-  <!-- Estilo específico de la vista -->
-  <link rel="stylesheet" href="../css/perfil.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/1-variables.css" />
+    <link rel="stylesheet" href="../css/2-layout.css" />
+    <link rel="stylesheet" href="../css/3-botones.css" />
 
-  <!-- Barra de navegación fija (molde común) -->
-  <header class="navbar">
-    <a href="dashboard.html" class="nav-marca">LingoWeb</a>
-    <nav>
-      <ul class="nav-enlaces">
-        <li><a href="dashboard.html">Cursos</a></li>
-        <li><a href="perfil.html" class="activo">Perfil</a></li>
-        <li><a href="ranking.html">Ranking</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Estilo específico de la vista -->
+    <link rel="stylesheet" href="../css/perfil.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación fija (molde común) -->
+    <header class="navbar">
+      <a href="dashboard.html" class="nav-marca">LingoWeb</a>
+      <nav>
+        <ul class="nav-enlaces">
+          <li><a href="dashboard.html">Cursos</a></li>
+          <li><a href="perfil.html" class="activo">Perfil</a></li>
+          <li><a href="ranking.html">Ranking</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <main class="contenedor-pagina">
-   
-     <h2>Perfil de Usuario</h2>
-    <div class="grilla-perfil">
-      <!-- Tarjeta de Información Personal -->
-      <section class="tarjeta perfil-cabecera">
-        <div class="avatar-contenedor">
-          <div class="avatar-placeholder">JP</div>
-        </div>
-        <h3>Juan Pérez</h3>
-        <p class="texto-chico">@juanperez_web</p>
-        <p class="texto-chico">Miembro desde Marzo 2025</p>
-        <p class="texto-chico">Email: juan.perez@alumnos.unlam.edu.ar</p>
-      </section>
-
-      <!-- Tarjeta de Ajustes y Formularios -->
-      <section class="tarjeta ">
-        <h3 class="columna-dos">Ajustes de la Cuenta</h3>
-
-        <form action="dashboard.html" method="post">
-         
-          <div class="campo-grupo">
-            <label for="idioma-pref">Idioma principal de interfaz:</label>
-            <select id="idioma-pref" name="idioma-pref" class="input-control">
-              <option value="es" selected>Español</option>
-              <option value="en">Inglés</option>
-              <option value="de">Alemán</option>
-            </select>
+    <main class="contenedor-pagina">
+      <h2>Perfil de Usuario</h2>
+      <div class="grilla-perfil">
+        <!-- Tarjeta de Información Personal -->
+        <section class="tarjeta perfil-cabecera">
+          <div class="avatar-contenedor">
+            <div class="avatar-placeholder">JP</div>
           </div>
+          <h3>Juan Pérez</h3>
+          <p class="texto-chico">@juanperez_web</p>
+          <p class="texto-chico">Miembro desde Marzo 2025</p>
+          <p class="texto-chico">Email: juan.perez@alumnos.unlam.edu.ar</p>
+        </section>
 
-          <hr class="separador-forma">
+        <!-- Tarjeta de Ajustes y Formularios -->
+        <section class="tarjeta">
+          <h3 class="columna-dos">Ajustes de la Cuenta</h3>
 
-          <!-- Cambiar Contraseña -->
-          <h4>Cambiar Contraseña</h4>
-          
-          <div class="campo-grupo">
-            <label for="password-actual">Contraseña Actual:</label>
-            <input type="password" id="password-actual" name="password-actual" class="input-control" placeholder="••••••••">
-          </div>
+          <form action="dashboard.html" method="post">
+            <div class="campo-grupo">
+              <label for="idioma-pref">Idioma principal de interfaz:</label>
+              <select id="idioma-pref" name="idioma-pref" class="input-control">
+                <option value="es" selected>Español</option>
+                <option value="en">Inglés</option>
+                <option value="de">Alemán</option>
+              </select>
+            </div>
 
-          <div class="campo-grupo">
-            <label for="password-nueva">Nueva Contraseña:</label>
-            <input type="password" id="password-nueva" name="password-nueva" class="input-control" placeholder="••••••••">
-          </div>
+            <hr class="separador-forma" />
 
-          <div class="acciones-perfil">
-            <button type="submit" class="btn btn-primario">Guardar Cambios</button>
-            <a href="../index.html" class="btn btn-secundario">Cerrar Sesión</a>
-          </div>
-        </form>
-      </section>
-    </div>
-  </main>
+            <!-- Cambiar Contraseña -->
+            <h4>Cambiar Contraseña</h4>
 
-</body>
+            <div class="campo-grupo">
+              <label for="password-actual">Contraseña Actual:</label>
+              <input
+                type="password"
+                id="password-actual"
+                name="password-actual"
+                class="input-control"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div class="campo-grupo">
+              <label for="password-nueva">Nueva Contraseña:</label>
+              <input
+                type="password"
+                id="password-nueva"
+                name="password-nueva"
+                class="input-control"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div class="campo-grupo">
+              <label for="password-confirmar"
+                >Confirmar Nueva Contraseña:</label
+              >
+              <input
+                type="password"
+                id="password-confirmar"
+                name="password-confirmar"
+                class="input-control"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div class="acciones-perfil">
+              <button type="submit" class="btn btn-primario">
+                Guardar Cambios
+              </button>
+              <a href="../index.html" class="btn btn-secundario"
+                >Cerrar Sesión</a
+              >
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>
