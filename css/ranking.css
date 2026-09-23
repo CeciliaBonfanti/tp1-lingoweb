@@ -50,3 +50,18 @@ th {
 .fila-usuario td {
   border-bottom-color: var(--color-primario);
 }
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espaciado-medio);
+    padding: var(--espaciado-medio);
+  }
+
+  .nav-enlaces {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    gap: var(--espaciado-medio);
+  }
+}
