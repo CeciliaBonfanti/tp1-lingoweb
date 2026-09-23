@@ -1,7 +1,7 @@
 /* Layout para poner cursos a la izquierda y estadísticas a la derecha */
 .dashboard-layout {
   display: flex;
-  gap: 20px;
+  gap: var(--espaciado-grande);
   align-items: flex-start;
 }
 
@@ -9,15 +9,15 @@
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: var(--espaciado-grande);
 }
 
 /* Ajustes de las tarjetas de curso */
 .tarjeta-header {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: var(--espaciado-chico);
+  margin-bottom: var(--espaciado-chico);
 }
 
 .bandera-img {
@@ -30,24 +30,24 @@
 
 .nivel-texto {
   font-weight: 600;
-  margin: 8px 0 15px 0;
+  margin: var(--espaciado-chico) 0 var(--espaciado-medio) 0;
 }
 
 /* Panel lateral de estadísticas */
 .sidebar-estadisticas {
-  width: 200px;
+  width: 220px;
 }
 
 .tarjeta-stats {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--espaciado-medio);
 }
 
 .stat-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--espaciado-medio);
 }
 
 .stat-icon {
@@ -60,17 +60,70 @@
 }
 
 .stat-label {
-  font-size: 0.8rem;
-  opacity: 0.8;
+  font-size: var(--texto-chico);
+  color: var(--color-texto-mutado);
 }
 
-/* Ajuste para celulares */
+
 @media (max-width: 768px) {
   .dashboard-layout {
     flex-direction: column;
+    align-items: center; /* Centra las secciones horizontalmente */
   }
+
+  .dashboard-layout .grilla-tarjetas {
+    width: 100%;
+    grid-template-columns: 1fr; /* Fuerza una sola columna centrada */
+  }
+
   .sidebar-estadisticas {
     width: 100%;
-    max-width: 360px;
+    max-width: 100%;
+    margin-top: var(--espaciado-medio); 
   }
+
+  /* Ajuste para que la barra de navegación no se desborde */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--espaciado-medio);
+  }
+
+  .nav-enlaces {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espaciado-medio);
+  }
+
+ /* Centrar el contenido de cada tarjeta de curso */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  text-align: center;     
+}
+
+/* Ajuste para la cabecera  dentro de la tarjeta */
+.tarjeta-header {
+  display: flex;
+  align-items: center;    /* Alinea la bandera con el título en el centro */
+  justify-content: center;
+  gap: var(--espaciado-chico);
+  margin-bottom: var(--espaciado-chico);
+}
+
+/* Centrar el contenido de la tarjeta de estadísticas */
+.tarjeta-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+/* Centra los íconos con el texto de estadísticas */
+.stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: var(--espaciado-medio);
+}
 }
