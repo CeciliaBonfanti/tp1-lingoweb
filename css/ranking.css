@@ -1,18 +1,52 @@
-.fila-usuario{
-    background-color: rgb(153, 153, 149);
- font-weight: bold
+/* Envoltorio con scroll horizontal si no entra en celular */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: var(--espaciado-medio);
 }
-.avatar{
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-border-radius: 50%;
-background-color: yellow;
-  color: green;
-  text-align: center;
-  line-height: 2rem;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px; /* Evita que las columnas se aplasten */
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px var(--espaciado-medio);
+  text-align: left;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--color-texto-mutado);
   font-weight: 600;
 }
-.tabla-scroll {
-  overflow-x: auto;
+
+/* Avatar circular */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Fila destacada del usuario */
+.fila-usuario {
+  background-color: rgba(56, 199, 180, 0.15); /* Tinte esmeralda sutil acorde a la paleta */
+  font-weight: bold;
+}
+
+.fila-usuario td {
+  border-bottom-color: var(--color-primario);
 }

@@ -1,8 +1,44 @@
-.bloqueda {
-    opacity: 0.5;
+/* Estilos para las tarjetas de lecciones */
+.tarjeta.bloqueada {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
 }
-@media screen and (max-widt: 768px){
-    .grilla-tarjetas {
-        flex-direction: column;
-    }
+
+.tarjeta.bloqueada:hover {
+  transform: none; /* No se levanta si está bloqueada */
+  border-color: var(--color-borde);
+}
+
+/* En celulares, forzar a 1 columna prolija */
+@media screen and (max-width: 768px) {
+  .grilla-tarjetas {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* Arregla la navbar para que no se salga de la pantalla */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--espaciado-medio);
+    gap: var(--espaciado-medio);
+  }
+
+  .nav-enlaces {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    gap: var(--espaciado-medio);
+  }
+
+  /* Fuerza las tarjetas a ocupar el ancho de la pantalla */
+  .grilla-tarjetas {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .tarjeta {
+    width: 100%;
+  }
 }
