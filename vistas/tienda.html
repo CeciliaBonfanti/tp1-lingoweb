@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LingoWeb - Tienda</title>
+    <link rel="stylesheet" href="../css/1-variables.css">
+    <link rel="stylesheet" href="../css/2-layout.css">
+    <link rel="stylesheet" href="../css/3-botones.css">
+    <!-- se reutiliza dashboards.css para usar .tarjeta-header y media querys-->
+    <link rel="stylesheet" href="../css/dashboards.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="dashboard.html" class="nav-marca">LingoWeb</a>
+        <ul class="nav-enlaces">
+            <li><a href="dashboard.html">Cursos</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="tienda.html" class="activo">Tienda</a></li>
+            <li><span>🔥 5 Días </span></li>
+            <li><span>⚡ 350 XP </span></li>
+        </ul>
+    </nav>
+
+    <main class="contenedor-pagina">
+        <h1>Tienda LingoWeb</h1>
+        <p class="texto-chico">Usa tus puntos de experiencia (XP) para conseguir ventajas.</p>
+
+        <section class="grilla-tarjetas">
+            <!-- Ítem 1: Recarga de vidas -->
+            <article class="tarjeta">
+                <div class="tarjeta-header">
+                    <h2>❤️ Recargar Vidas</h2>
+                </div>
+                <p>Rellena tus 3 corazones para seguir aprendiendo sin pausas.</p>
+                <div>
+                    <button class="btn btn-primario">Comprar por 50 ⚡</button>
+                </div>
+            </article>
+            <!-- Ítem 2: Protector de racha -->
+            <article class="tarjeta">
+                <div class="tarjeta-header">
+                    <h2>🛡️ Protector de Racha</h2>
+                </div>
+                <p>Mantiene tu racha de días (🔥) intacta si no puedes entrar a estudiar un día.</p>
+                <div>
+                    <button class="btn btn-secundario">Comprar por 150 ⚡</button>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
