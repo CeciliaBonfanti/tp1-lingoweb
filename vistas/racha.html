@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LingoWeb - Historial de Racha</title>
+    <link rel="stylesheet" href="../css/1-variables.css">
+    <link rel="stylesheet" href="../css/2-layout.css">
+    <link rel="stylesheet" href="../css/3-botones.css">
+    <link rel="stylesheet" href="../css/dashboards.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN PRINCIPAL -->
+    <nav class="navbar">
+        <a href="dashboard.html" class="nav-marca">LingoWeb</a>
+        <ul class="nav-enlaces">
+            <li><a href="dashboard.html">Cursos</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="racha.html">🔥 5 Días</a></li>
+            <li><span>⚡ 350 XP</span></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="contenedor-pagina">
+        <h1>Mi Racha de Estudio</h1>
+
+        <div class="dashboard-layout">
+            
+            <!-- CONTENIDO PRINCIPAL DE LA RACHA (IZQUIERDA) -->
+            <section class="grilla-tarjetas">
+                
+                <!-- Tarjeta de Estado Actual -->
+                <article class="tarjeta">
+                    <h2>🔥 Racha Actual: 5 Días</h2>
+                    <p class="nivel-texto">¡Estás en racha! Practicaste 5 días seguidos.</p>
+                    <p class="texto-chico">Racha iniciada el: <strong>25 de Septiembre de 2026</strong></p>
+                </article>
+
+                <!-- Tarjeta de Historial / Resumen -->
+                <article class="tarjeta">
+                    <h3>Detalles de la Racha</h3>
+                    <p class="nivel-texto">Mejor racha histórica: <strong>14 Días</strong></p>
+                    <p class="texto-chico">Último día completado: Hoy</p>
+                    <p class="texto-chico">Total de lecciones esta semana: 12</p>
+                </article>
+
+            </section>
+
+            <!-- PANEL LATERAL DE RESUMEN (DERECHA) -->
+            <aside class="sidebar-estadisticas">
+                <div class="tarjeta tarjeta-stats">
+                    <h3>Siguiente Meta</h3>
+                    <div class="stat-item">
+                        <span class="stat-icon">🎯</span>
+                        <div>
+                            <span class="stat-label">Objetivo</span>
+                            <strong>7 Días seguidos</strong>
+                        </div>
+                    </div>
+                    <a href="dashboard.html" class="btn btn-primario">Volver a Cursos</a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+</body>
+</html>
