@@ -478,7 +478,7 @@ a.btn {
         flex-wrap: wrap;
     }
     .grupo-indicador-vida { margin-left: auto; }
-    .grupo-indicador-vida .nav-texto { display: none; }
+    .indicador-idioma .texto-idioma { display: none; }
     .grupo-progreso { order: 3; width: 100%; margin-top: var(--espaciado-chico); }
 
     /* ÁREA DEL EJERCICIO */
