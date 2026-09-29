@@ -62,7 +62,7 @@
 
 .input-control:focus {
   border-color: var(--color-primario);
-  box-shadow: 0 0 8px rgba(56, 199, 180, 0.2);
+  box-shadow: 0 0 10px rgba(56, 199, 180, 0.2);
 }
 
 /* Imágenes e Íconos */
