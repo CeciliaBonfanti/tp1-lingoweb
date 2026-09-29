@@ -240,8 +240,17 @@ a.btn {
 }
 
 /*BARRA DE PROGRESO DEL NAV*/
-.progreso-60 {
-    width: 60%;
+.progreso-0 {
+    width: 0%;
+}
+.progreso-12 { 
+    width: 12%; 
+}
+.progreso-45 {
+    width: 45%; 
+}
+.progreso-100 {
+    width: 100%; 
 }
 
 .grupo-progreso {

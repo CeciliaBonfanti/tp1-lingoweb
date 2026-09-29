@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LingoWeb - Lección de Chino</title>
+    <title>LingoWeb - Lección de Inglés</title>
     <link rel="stylesheet" href="../css/1-variables.css">
     <link rel="stylesheet" href="../css/2-layout.css">
     <link rel="stylesheet" href="../css/3-botones.css">
@@ -12,16 +12,16 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="mapa-chino.html"><img src="../imagenes/cancelar.png" alt="Cancelar lección"></a>
+        <a href="mapa.html"><img src="../imagenes/cancelar.png" alt="Cancelar lección"></a>
         <div class="indicador-idioma">
-            <img src="../imagenes/bandera-cn.png" alt="Chino" class="bandera-chica">
-            <span class="nav-texto texto-idioma">Chino</span>
+            <img src="../imagenes/bandera-gb.png" alt="Inglés" class="bandera-chica">
+            <span class="nav-texto texto-idioma">Inglés</span>
         </div>
         <section class="grupo-progreso">
             <div class="barra-progreso-contenedor">
-                <div class="barra-progreso-relleno progreso-0"></div>
+                <div class="barra-progreso-relleno progreso-100"></div>
             </div>
-            <span class="nav-texto">0%</span>
+            <span class="nav-texto">100%</span>
         </section>
 
         <section class="grupo-indicador-vida">
@@ -38,26 +38,31 @@
              <h2>Traduce la siguiente oración:</h2>
     
             <article class="oracion">
-                <p>"Wǒ xǐhuan hē kāfēi" 🔊</p>
+                <p>"My cat sleeps all day." 🔊</p>
             </article>
 
             <article class="area-respuesta">
-                <span class="palabra">Me</span>
-                <span class="palabra">gusta</span>
-                <span class="palabra">tomar</span>
-                <span class="palabra">café</span>
+                <span class="palabra">Mi</span>
+                <span class="palabra">gato</span>
+                <span class="palabra">come</span>
+                <span class="palabra">todo</span>
+                <span class="palabra">el</span>
+                <span class="palabra">dia</span>
             </article>
 
             <p>Banco de palabras disponibles:</p>
 
             <article class="area-palabras">
-                <span class="palabra">no</span>
-                <span class="palabra">agua</span>
-                <span class="palabra">café</span>
-                <span class="palabra">gusta</span>
-                <span class="palabra">tomar</span>
-                <span class="palabra">comer</span>
-                <span class="palabra">Me</span>
+                <span class="palabra">tu</span>
+                <span class="palabra">gato</span>
+                <span class="palabra">Mi</span>
+                <span class="palabra">todo</span>
+                <span class="palabra">duerme</span>
+                <span class="palabra">el</span>
+                <span class="palabra">perro</span>
+                <span class="palabra">mucho</span>
+                <span class="palabra">dia</span>
+                <span class="palabra">come</span>
             </article>
         </section>
     </main>
@@ -65,14 +70,14 @@
     
         <!-- ESTADO NORMAL -->
         <div class="estado-footer estado-normal">
-            <a href="#estado-exito" class="btn btn-primario btn-accion">Comprobar Respuesta</a>
+            <a href="#estado-error" class="btn btn-primario btn-accion">Comprobar Respuesta</a>
         </div>
 
         <!-- ESTADO ÉXITO -->
         <div id="estado-exito" class="estado-footer estado-exito">
             <div class="feedback-textos">
                 <p class="titulo-exito"><strong>¡Excelente!</strong></p>
-                <p class="texto-significado">Significado: Me gusta tomar café</p>
+                <p class="texto-significado">Significado: Mi gato duerme todo el día</p>
             </div>
             <a href="#" class="btn btn-primario btn-accion">Continuar</a>
         </div>
@@ -81,10 +86,11 @@
         <div id="estado-error" class="estado-footer estado-error">
             <div class="feedback-textos">
                 <p class="titulo-error"><strong>¡Respuesta incorrecta!</strong></p>
-                <p class="texto-significado">Me gusta tomar café</p>
+                <p class="texto-significado">Solución: Mi gato duerme todo el día</p>
             </div>
             <a href="#" class="btn btn-error btn-accion">Continuar</a> 
         </div>
+    
     </footer>
 </body>
 </html>
