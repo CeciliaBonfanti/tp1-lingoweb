@@ -226,6 +226,19 @@ a.btn {
 
 /*ESTILOS DE LA NAVBAR DE LA VISTA LECCION */
 
+/* INDICADOR DE IDIOMA */
+.indicador-idioma {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-chico);
+}
+
+.bandera-chica {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
 /*BARRA DE PROGRESO DEL NAV*/
 .progreso-60 {
     width: 60%;
