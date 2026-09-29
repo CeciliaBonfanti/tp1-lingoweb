@@ -48,6 +48,18 @@ h4,
   justify-content: center;
 }
 
+.btn-peligro {
+  background-color: var(--color-error);
+  color: var(--color-texto-principal);
+
+}
+
+.btn-peligro:hover {
+  background-color: #c0392b;
+  box-shadow: 0 0 15px rgba(227, 57, 70, 0.4);
+}
+
+
 /* Responsivo para celulares */
 @media (max-width: 768px) {
   .grilla-perfil {

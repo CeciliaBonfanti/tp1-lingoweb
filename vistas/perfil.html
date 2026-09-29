@@ -12,6 +12,7 @@
     <!-- Estilo específico de la vista -->
     <link rel="stylesheet" href="../css/perfil.css" />
   </head>
+
   <body>
     <!-- Barra de navegación fija (molde común) -->
     <header class="navbar">
@@ -43,7 +44,8 @@
         <section class="tarjeta">
           <h3 class="columna-dos">Ajustes de la Cuenta</h3>
 
-          <form action="dashboard.html" method="get"> <!-- Se cambia post por get a modo de prueba -->
+          <form action="dashboard.html" method="get">
+            <!-- Se cambia post por get a modo de prueba -->
             <div class="campo-grupo">
               <label for="idioma-pref">Idioma principal de interfaz:</label>
               <select id="idioma-pref" name="idioma-pref" class="input-control">
@@ -100,6 +102,23 @@
               <a href="../index.html" class="btn btn-secundario"
                 >Cerrar Sesión</a
               >
+            </div>
+
+            <hr class="separador-forma" />
+
+            <div >
+              <h4>Eliminación de la cuenta</h4>
+              <p class="texto-chico">
+                Una vez eliminada tu cuenta, no podrás recuperar tu progreso ni
+                tus estadísticas.
+              </p>
+
+              <a
+                href="eliminar-cuenta-confirmacion.html"
+                class="btn btn-peligro"
+              >
+                Eliminar mi cuenta
+              </a>
             </div>
           </form>
         </section>

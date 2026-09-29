@@ -2,7 +2,7 @@
 
 /* Base de todos los botones */
 .btn {
-  display: inline-block;
+  display: inline-block;              /* Que se comporte como una caja modificable a la que le puedes agregar padding. tambien se puede con flex*/
   font-family: var(--fuente-principal);
   font-size: var(--texto-normal);
   font-weight: 600;
@@ -55,7 +55,7 @@
   border: 1px solid var(--color-borde);
   border-radius: 8px;
   color: var(--color-texto-principal);
-  outline: none;
+  outline: none;                /* elimina el borde navegadores pintan por defecto alrededor de un campo de texto */
   transition: border-color 0.2s, box-shadow 0.2s;
   margin-bottom: var(--espaciado-medio);
 }

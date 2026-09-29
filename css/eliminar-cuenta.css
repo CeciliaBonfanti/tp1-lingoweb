@@ -1,0 +1,53 @@
+/* Centrado de la pantalla de confirmación */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contenedor-confirmacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.confirmacion-header {
+  text-align: center;
+  
+  margin-bottom: var(--espaciado-medio);
+}
+
+.confirmacion-header .nav-marca{
+    font-size: 2.6rem;
+}
+
+.tarjeta-confirmacion {
+  width: 100%;
+  text-align: center;
+}
+
+.titulo-peligro {
+  color: var(--color-error);
+  margin-bottom: var(--espaciado-medio);
+}
+
+.mensaje-advertencia {
+  margin-bottom: var(--espaciado-grande);
+  line-height: 1.5;
+}
+
+.acciones-confirmacion {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaciado-medio);
+}
+
+/* En celulares apila los botones para facilitar la lectura */
+@media (max-width: 480px) {
+  .acciones-confirmacion {
+    flex-direction: column;
+  }
+}
