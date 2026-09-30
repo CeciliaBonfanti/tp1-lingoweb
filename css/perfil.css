@@ -11,6 +11,10 @@
   flex-direction: column;
   align-items: center;
 }
+
+.perfil-cabecera h2{
+  margin-bottom: 50px ;
+}
 h4,
 .columna-dos{
   text-align: center;
