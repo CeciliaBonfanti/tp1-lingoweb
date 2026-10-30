@@ -1,0 +1,22 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Juan Pérez",
+      "usuario": "juanperez_web",
+      "email": "juan@unlam.edu.ar",
+      "password": "123",
+      "xp": 350,
+      "racha": 5
+    }
+  ],
+  "lecciones": [
+    {
+      "id": 1,
+      "idioma": "ingles",
+      "oracionOriginal": "Hello, nice to meet you.",
+      "traduccionCorrecta": ["Hola,", "encantado", "de", "saludarte"],
+      "bancoPalabras": ["Adios,", "encantado", "de", "Hola,", "saludarte", "triste", "tu"]
+    }
+  ]
+}
