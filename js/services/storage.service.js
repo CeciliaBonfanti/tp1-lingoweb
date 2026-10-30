@@ -20,5 +20,17 @@ export const StorageService = {
 
     getLecciones: function() {
         return JSON.parse(localStorage.getItem('lecciones')) || [];
+    },
+    agregarUsuario: function(nuevoUsuario) {
+        const usuarios = this.getUsuarios();
+        
+        // Le asignamos un ID automático (si hay usuarios, sumamos 1 al último ID)
+        nuevoUsuario.id = usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+        
+        // Lo agregamos a la lista
+        usuarios.push(nuevoUsuario);
+        
+        // Guardamos la lista actualizada convirtiéndola a texto
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
     }
 };
