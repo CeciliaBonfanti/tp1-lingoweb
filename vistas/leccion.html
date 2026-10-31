@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LingoWeb - Lección de Alemán</title>
+    <title>LingoWeb - Lección</title>
     <link rel="stylesheet" href="../css/1-variables.css">
     <link rel="stylesheet" href="../css/2-layout.css">
     <link rel="stylesheet" href="../css/3-botones.css">
-
     <link rel="stylesheet" href="../css/leccion.css">
 </head>
 <body>
     <nav class="navbar">
-        <a href="mapa-aleman.html"><img src="../imagenes/cancelar.png" alt="Cancelar lección"></a>
+        <a href="dashboard.html"><img src="../imagenes/cancelar.png" alt="Cancelar lección"></a>
         <div class="indicador-idioma">
-            <img src="../imagenes/bandera-de.png" alt="Alemán" class="bandera-chica">
-            <span class="nav-texto texto-idioma">Alemán</span>
+            <img src="../imagenes/bandera-de.png" alt="Idioma" class="bandera-chica" id="icono-idioma">
+            <span class="nav-texto texto-idioma" id="titulo-idioma">Cargando...</span>
         </div>
         <section class="grupo-progreso">
             <div class="barra-progreso-contenedor">
@@ -28,61 +27,57 @@
             <div class="contenedor-corazones">
                 <img src="../imagenes/forma-de-corazon.png" alt="corazon">
             </div>
-             <span class="nav-texto">Vidas: 3</span>
+             <span class="nav-texto" id="contador-vidas">Vidas: 3</span>
         </section>
     </nav>
+    
     <main class="contenedor-pagina">
         <section class="area-ejercicio">
              <h2>Traduce la siguiente oración:</h2>
     
             <article class="oracion">
-                <p>"Guten Tag, wie geht es dir?" 🔊</p>
+                <!-- Acá JavaScript va a inyectar la oración (ej: "Hello, nice to meet you") -->
+                <p id="oracion-original">Cargando oración...</p>
             </article>
 
-            <article class="area-respuesta">
-                <span class="palabra">Buenos</span>
-                <span class="palabra">días</span>
-                <span class="palabra">¿cómo</span>
-                <span class="palabra">estás?</span>
+            <!-- Este contenedor arranca vacío. Acá van a caer las palabras que el usuario elija -->
+            <article class="area-respuesta" id="contenedor-respuesta">
             </article>
 
             <p>Banco de palabras disponibles:</p>
 
-            <article class="area-palabras">
-                <span class="palabra">Hola</span>
-                <span class="palabra">días</span>
-                <span class="palabra">estás?</span>
-                <span class="palabra">Gracias</span>
-                <span class="palabra">¿cómo</span>
-                <span class="palabra">Buenos</span>
-                <span class="palabra">Adiós</span>
+            <!-- Este contenedor arranca vacío. Acá JavaScript va a crear los botones desordenados -->
+            <article class="area-palabras" id="banco-palabras">
             </article>
         </section>
     </main>
-    <footer class="footer" id="footer-leccion">
     
+    <footer class="footer" id="footer-leccion">
         <!-- ESTADO NORMAL -->
-        <div class="estado-footer estado-normal">
-            <a href="#estado-exito" class="btn btn-primario btn-accion">Comprobar Respuesta</a>
+        <div id="estado-normal" class="estado-footer estado-normal">
+            <button id="btn-comprobar" class="btn btn-primario btn-accion">Comprobar Respuesta</button>
         </div>
 
-        <!-- ESTADO ÉXITO -->
+        <!-- ESTADO ÉXITO (Oculto por defecto desde CSS, idealmente) -->
         <div id="estado-exito" class="estado-footer estado-exito">
             <div class="feedback-textos">
                 <p class="titulo-exito"><strong>¡Excelente!</strong></p>
-                <p class="texto-significado">Significado: Buenos días, ¿cómo estás?</p>
+                <p class="texto-significado" id="texto-exito">Significado: ...</p>
             </div>
-            <a href="#" class="btn btn-primario btn-accion">Continuar</a>
+            <button id="btn-continuar-exito" class="btn btn-primario btn-accion">Continuar</button>
         </div>
 
-        <!-- ESTADO ERROR -->
+        <!-- ESTADO ERROR (Oculto por defecto desde CSS) -->
         <div id="estado-error" class="estado-footer estado-error">
             <div class="feedback-textos">
                 <p class="titulo-error"><strong>¡Respuesta incorrecta!</strong></p>
-                <p class="texto-significado">Solución: Buenos días, ¿cómo estás?</p>
+                <p class="texto-significado" id="texto-error">Solución: ...</p>
             </div>
-            <a href="#" class="btn btn-error btn-accion">Continuar</a> 
+            <button id="btn-continuar-error" class="btn btn-error btn-accion">Continuar</button> 
         </div>
     </footer> 
+
+    <!-- Conectamos el nuevo script -->
+    <script type="module" src="../js/leccion.js"></script>
 </body>
 </html>
