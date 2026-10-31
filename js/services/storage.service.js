@@ -19,6 +19,7 @@ export const StorageService = {
     },
 
     getLecciones: function() {
+        this.inicializarDatos();
         return JSON.parse(localStorage.getItem('lecciones')) || [];
     },
     agregarUsuario: function(nuevoUsuario) {

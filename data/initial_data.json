@@ -15,8 +15,8 @@
       "id": 1,
       "idioma": "ingles",
       "oracionOriginal": "Hello, nice to meet you.",
-      "traduccionCorrecta": ["Hola,", "encantado", "de", "saludarte"],
-      "bancoPalabras": ["Adios,", "encantado", "de", "Hola,", "saludarte", "triste", "tu"]
+      "traduccionCorrecta": ["Hola,", "encantado", "de", "conocerte"],
+      "bancoPalabras": ["Adios,", "encantado", "de", "Hola,", "conocerte", "triste", "tu"]
     }
   ]
 }
