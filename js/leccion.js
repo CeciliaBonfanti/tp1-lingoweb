@@ -1,8 +1,15 @@
 import { StorageService } from './services/storage.service.js';
 
-const lecciones = StorageService.getLecciones();
+// 1. Leemos el parámetro 'leccion' de la URL (si no hay nada, por defecto carga la 1)
+const parametrosURL = new URLSearchParams(window.location.search);
+const leccionSeleccionadaId = parseInt(parametrosURL.get('leccion')) || 1;
+
+// 2. Traemos todas las lecciones del Storage y filtramos estrictamente por el ID y por el idioma inglés
+const todasLasLecciones = StorageService.getLecciones();
+const lecciones = todasLasLecciones.filter(l => l.leccionId === leccionSeleccionadaId && l.idioma === 'ingles');
+
 let indiceActual = 0; // Para llevar la cuenta de por qué oración vamos
-let leccionActual = lecciones[indiceActual]; 
+let leccionActual = lecciones[indiceActual];
 
 const iconoIdioma = document.getElementById('icono-idioma');
 const tituloIdioma = document.getElementById('titulo-idioma');
@@ -65,7 +72,7 @@ function cargarLeccionActual() {
     renderizar();
 }
 
-// 2. Renderizar las palabras en pantalla
+// Renderizar las palabras en pantalla
 function renderizar() {
     bancoPalabras.innerHTML = '';
     contenedorRespuesta.innerHTML = '';
@@ -107,28 +114,60 @@ btnComprobar.addEventListener('click', () => {
         textoExito.textContent = `Significado: ${leccionActual.traduccionCorrecta.join(' ')}`;
         estadoExito.classList.add('activo');
 
-        // Sumar XP al usuario activo
-        const usuarioStr = localStorage.getItem('usuarioActivo');
-        if (usuarioStr) {
-            const usuario = JSON.parse(usuarioStr);
-            usuario.xp += 50; 
-            localStorage.setItem('usuarioActivo', JSON.stringify(usuario));
+        // Sumar XP al usuario dentro del array 'usuarios'
+        const usuariosStr = localStorage.getItem('usuarios');
+        if (usuariosStr) {
+            const usuarios = JSON.parse(usuariosStr);
+            if (usuarios.length > 0) {
+                if (usuarios[0].xp === undefined) usuarios[0].xp = 0;
+                usuarios[0].xp += 50; 
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            }
         }
     } else {
         textoError.textContent = `Solución: ${leccionActual.traduccionCorrecta.join(' ')}`;
         estadoError.classList.add('activo');
 
-        // Restar vida
-        const usuarioStr = localStorage.getItem('usuarioActivo');
-        if (usuarioStr) {
-            const usuario = JSON.parse(usuarioStr);
-            if (usuario.vidas === undefined) usuario.vidas = 3;
-            usuario.vidas -= 1; 
-            localStorage.setItem('usuarioActivo', JSON.stringify(usuario));
-            
-            const contadorVidas = document.getElementById('contador-vidas');
-            if (contadorVidas) {
-                contadorVidas.textContent = `Vidas: ${usuario.vidas}`;
+        // Restar vida al usuario dentro del array 'usuarios' de forma limpia y controlada
+        const usuariosStr = localStorage.getItem('usuarios');
+        if (usuariosStr) {
+            const usuarios = JSON.parse(usuariosStr);
+            if (usuarios.length > 0) {
+                if (usuarios[0].vidas === undefined || usuarios[0].vidas === null) {
+                    usuarios[0].vidas = 3;
+                }
+                
+                usuarios[0].vidas -= 1; 
+                if (usuarios[0].vidas < 0) usuarios[0].vidas = 0;
+
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+                
+                const contadorVidas = document.getElementById('contador-vidas');
+                if (contadorVidas) {
+                    contadorVidas.textContent = `Vidas: ${usuarios[0].vidas}`;
+                }
+
+                // Si las vidas llegan a 0, ponemos un enlace interactivo al mapa y el botón a la tienda
+                if (usuarios[0].vidas === 0) {
+                    textoError.innerHTML = `¡Te quedaste sin vidas! Esperá 1 hora en tu <a href="dashboard.html" style="text-decoration: underline; color: inherit; font-weight: bold;">mapa</a> para recargar o ve a la tienda.`;
+                    
+                    btnContinuarError.textContent = "Ir a la Tienda";
+                    btnContinuarError.onclick = () => {
+                        window.location.href = 'tienda.html';
+                    };
+                } else {
+                    // Si aún tiene vidas, dejamos el botón listo para reintentar normalmente
+                    btnContinuarError.textContent = "Continuar";
+                    btnContinuarError.onclick = () => {
+                        estadoError.classList.remove('activo');
+                        estadoNormal.classList.remove('oculto');
+                        
+                        palabrasDisponibles = [...leccionActual.bancoPalabras];
+                        palabrasSeleccionadas = [];
+                        renderizar();
+                    };
+                
+                }
             }
         }
     }
@@ -151,17 +190,6 @@ btnContinuarExito.addEventListener('click', () => {
         }
         window.location.href = 'dashboard.html';
     }
-});
-
-// Botón Continuar (Error): Permitir reintentar o volver al estado normal
-btnContinuarError.addEventListener('click', () => {
-    estadoError.classList.remove('activo');
-    estadoNormal.classList.remove('oculto');
-    
-    // Reseteamos las palabras seleccionadas para que vuelva a armar la oración desde cero
-    palabrasDisponibles = [...leccionActual.bancoPalabras];
-    palabrasSeleccionadas = [];
-    renderizar();
 });
 
 // Inicializar la primera oración al cargar la página
