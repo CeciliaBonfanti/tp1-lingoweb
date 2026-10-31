@@ -13,10 +13,43 @@
   "lecciones": [
     {
       "id": 1,
+      "leccionId": 1,
       "idioma": "ingles",
       "oracionOriginal": "Hello, nice to meet you.",
       "traduccionCorrecta": ["Hola,", "encantado", "de", "conocerte"],
       "bancoPalabras": ["Adios,", "encantado", "de", "Hola,", "conocerte", "triste", "tu"]
+    },
+    {
+      "id": 2,
+      "leccionId": 1,
+      "idioma": "ingles",
+      "oracionOriginal": "Good morning, how are you?",
+      "traduccionCorrecta": ["Buenos", "días,", "¿cómo", "estás?"],
+      "bancoPalabras": ["Buenos", "días,", "¿cómo", "estás?", "noches", "mal"]
+    },
+    {
+      "id": 3,
+      "leccionId": 1,
+      "idioma": "ingles",
+      "oracionOriginal": "Thank you very much.",
+      "traduccionCorrecta": ["Muchas", "gracias."],
+      "bancoPalabras": ["Muchas", "gracias.", "por", "favor", "hola", "adios"]
+    },
+    {
+      "id": 4,
+      "leccionId": 1,
+      "idioma": "ingles",
+      "oracionOriginal": "See you tomorrow.",
+      "traduccionCorrecta": ["Hasta", "mañana."],
+      "bancoPalabras": ["Hasta", "mañana.", "hoy", "ayer", "nos", "vemos"]
+    },
+    {
+      "id": 5,
+      "leccionId": 1,
+      "idioma": "ingles",
+      "oracionOriginal": "Have a nice day.",
+      "traduccionCorrecta": ["Que", "tengas", "un", "buen", "día."],
+      "bancoPalabras": ["Que", "tengas", "un", "buen", "día.", "noche", "luego", "mal"]
     }
   ]
 }

@@ -1,7 +1,8 @@
 import { StorageService } from './services/storage.service.js';
 
 const lecciones = StorageService.getLecciones();
-const leccionActual = lecciones[0]; 
+let indiceActual = 0; // Para llevar la cuenta de por qué oración vamos
+let leccionActual = lecciones[indiceActual]; 
 
 const iconoIdioma = document.getElementById('icono-idioma');
 const tituloIdioma = document.getElementById('titulo-idioma');
@@ -18,29 +19,62 @@ const textoError = document.getElementById('texto-error');
 const btnContinuarExito = document.getElementById('btn-continuar-exito');
 const btnContinuarError = document.getElementById('btn-continuar-error');
 
-// Estado local de la lección
-let palabrasSeleccionadas = [];
-let palabrasDisponibles = [...leccionActual.bancoPalabras]; // Copia del banco
+// Elementos de la barra de progreso nativa
+const barraProgreso = document.getElementById('barra-progreso');
+const textoPorcentaje = document.getElementById('texto-porcentaje');
 
-// 1. Configurar vista inicial
-if (leccionActual.idioma === 'ingles') {
-    iconoIdioma.src = '../imagenes/bandera-gb.png'; 
-    tituloIdioma.textContent = 'Inglés';
+let palabrasSeleccionadas = [];
+let palabrasDisponibles = [];
+
+// Diccionario de idiomas
+const idiomasConfig = {
+    'ingles': { bandera: '../imagenes/bandera-gb.png', titulo: 'Inglés' },
+    'frances': { bandera: '../imagenes/bandera-fr.png', titulo: 'Francés' },
+    'aleman': { bandera: '../imagenes/bandera-de.png', titulo: 'Alemán' },
+    'italiano': { bandera: '../imagenes/bandera-it.png', titulo: 'Italiano' },
+    'portugues': { bandera: '../imagenes/bandera-br.png', titulo: 'Portugués' },
+    'espanol': { bandera: '../imagenes/bandera-es.png', titulo: 'Español' },
+    'japones': { bandera: '../imagenes/bandera-jp.png', titulo: 'Japonés' },
+    'chino': { bandera: '../imagenes/bandera-cn.png', titulo: 'Chino' }
+};
+
+// Función para cargar los datos de la oración actual
+function cargarLeccionActual() {
+    if (!lecciones || lecciones.length === 0) return;
+    leccionActual = lecciones[indiceActual];
+    palabrasDisponibles = [...leccionActual.bancoPalabras];
+    palabrasSeleccionadas = [];
+
+    // Configurar idioma usando el diccionario
+    const configActual = idiomasConfig[leccionActual.idioma] || { 
+        bandera: '../imagenes/default.png', 
+        titulo: leccionActual.idioma 
+    };
+
+    iconoIdioma.src = configActual.bandera;
+    tituloIdioma.textContent = configActual.titulo;
+    oracionOriginal.textContent = leccionActual.oracionOriginal;
+
+    // Actualizar barra de progreso visualmente al cargar
+    const porcentaje = Math.round((indiceActual / lecciones.length) * 100);
+    if (barraProgreso && textoPorcentaje) {
+        barraProgreso.value = porcentaje;
+        textoPorcentaje.textContent = `${porcentaje}%`;
+    }
+
+    renderizar();
 }
-oracionOriginal.textContent = leccionActual.oracionOriginal;
 
 // 2. Renderizar las palabras en pantalla
 function renderizar() {
     bancoPalabras.innerHTML = '';
     contenedorRespuesta.innerHTML = '';
 
-    // Renderizar banco
     palabrasDisponibles.forEach((palabra, i) => {
         const span = document.createElement('span');
         span.classList.add('palabra');
         span.textContent = palabra;
         span.addEventListener('click', () => {
-            // Mover de banco a respuesta
             palabrasSeleccionadas.push(palabra);
             palabrasDisponibles.splice(i, 1);
             renderizar();
@@ -48,13 +82,11 @@ function renderizar() {
         bancoPalabras.appendChild(span);
     });
 
-    // Renderizar respuesta
     palabrasSeleccionadas.forEach((palabra, i) => {
         const span = document.createElement('span');
         span.classList.add('palabra');
         span.textContent = palabra;
         span.addEventListener('click', () => {
-            // Mover de respuesta de vuelta al banco
             palabrasDisponibles.push(palabra);
             palabrasSeleccionadas.splice(i, 1);
             renderizar();
@@ -86,17 +118,14 @@ btnComprobar.addEventListener('click', () => {
         textoError.textContent = `Solución: ${leccionActual.traduccionCorrecta.join(' ')}`;
         estadoError.classList.add('activo');
 
-        // RESTAR VIDA AL USUARIO ACTIVO
+        // Restar vida
         const usuarioStr = localStorage.getItem('usuarioActivo');
         if (usuarioStr) {
             const usuario = JSON.parse(usuarioStr);
-            // Si el usuario no tiene la propiedad vidas, arrancamos en 3 por defecto
             if (usuario.vidas === undefined) usuario.vidas = 3;
-            
-            usuario.vidas -= 1; // Restamos una vida
+            usuario.vidas -= 1; 
             localStorage.setItem('usuarioActivo', JSON.stringify(usuario));
             
-            // Actualizamos el texto de vidas en la Navbar al instante
             const contadorVidas = document.getElementById('contador-vidas');
             if (contadorVidas) {
                 contadorVidas.textContent = `Vidas: ${usuario.vidas}`;
@@ -105,14 +134,35 @@ btnComprobar.addEventListener('click', () => {
     }
 });
 
-// Botones de continuar para volver al dashboard o reiniciar
+// Botón Continuar (Éxito): Avanzar a la siguiente oración o finalizar
 btnContinuarExito.addEventListener('click', () => {
-    window.location.href = 'dashboard.html';
+    indiceActual++;
+    
+    // Si quedan más oraciones en la lección
+    if (indiceActual < lecciones.length) {
+        estadoExito.classList.remove('activo');
+        estadoNormal.classList.remove('oculto');
+        cargarLeccionActual();
+    } else {
+        // Si era la última oración, la lección se completó al 100% y volvemos al dashboard
+        if (barraProgreso && textoPorcentaje) {
+            barraProgreso.value = 100;
+            textoPorcentaje.textContent = '100%';
+        }
+        window.location.href = 'dashboard.html';
+    }
 });
 
+// Botón Continuar (Error): Permitir reintentar o volver al estado normal
 btnContinuarError.addEventListener('click', () => {
-    window.location.href = 'dashboard.html';
+    estadoError.classList.remove('activo');
+    estadoNormal.classList.remove('oculto');
+    
+    // Reseteamos las palabras seleccionadas para que vuelva a armar la oración desde cero
+    palabrasDisponibles = [...leccionActual.bancoPalabras];
+    palabrasSeleccionadas = [];
+    renderizar();
 });
 
-// Inicializar juego
-renderizar();
+// Inicializar la primera oración al cargar la página
+cargarLeccionActual();
