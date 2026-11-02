@@ -1,10 +1,17 @@
-import { StorageService } from './services/storage.service.js';
+import { StorageService } from '../services/storage.service.js';
+import { UsuarioService } from '../services/usuario.service.js';
 
-// 1. Leemos el parámetro 'leccion' de la URL (si no hay nada, por defecto carga la 1)
+// Inicializamos los servicios
+const usuarioService = new UsuarioService();
+
+// 1. Aseguramos que los datos del JSON estén listos en el Storage antes de leerlos
+StorageService.inicializarDatos();
+
+// 2. Leemos el parámetro 'leccion' de la URL (si no hay nada, por defecto carga la 1)
 const parametrosURL = new URLSearchParams(window.location.search);
 const leccionSeleccionadaId = parseInt(parametrosURL.get('leccion')) || 1;
 
-// 2. Traemos todas las lecciones del Storage y filtramos estrictamente por el ID y por el idioma inglés
+// 3. Traemos todas las lecciones del Storage y filtramos estrictamente por el ID y por el idioma inglés
 const todasLasLecciones = StorageService.getLecciones();
 const lecciones = todasLasLecciones.filter(l => l.leccionId === leccionSeleccionadaId && l.idioma === 'ingles');
 
@@ -58,9 +65,9 @@ function cargarLeccionActual() {
         titulo: leccionActual.idioma 
     };
 
-    iconoIdioma.src = configActual.bandera;
-    tituloIdioma.textContent = configActual.titulo;
-    oracionOriginal.textContent = leccionActual.oracionOriginal;
+    if (iconoIdioma) iconoIdioma.src = configActual.bandera;
+    if (tituloIdioma) tituloIdioma.textContent = configActual.titulo;
+    if (oracionOriginal) oracionOriginal.textContent = leccionActual.oracionOriginal;
 
     // Actualizar barra de progreso visualmente al cargar
     const porcentaje = Math.round((indiceActual / lecciones.length) * 100);
@@ -74,6 +81,8 @@ function cargarLeccionActual() {
 
 // Renderizar las palabras en pantalla
 function renderizar() {
+    if (!bancoPalabras || !contenedorRespuesta) return;
+    
     bancoPalabras.innerHTML = '';
     contenedorRespuesta.innerHTML = '';
 
@@ -103,52 +112,48 @@ function renderizar() {
 }
 
 // 3. Botón Comprobar Respuesta
-btnComprobar.addEventListener('click', () => {
-    if (palabrasSeleccionadas.length === 0) return;
+if (btnComprobar) {
+    btnComprobar.addEventListener('click', () => {
+        if (palabrasSeleccionadas.length === 0) return;
 
-    const esCorrecta = JSON.stringify(palabrasSeleccionadas) === JSON.stringify(leccionActual.traduccionCorrecta);
+        const esCorrecta = JSON.stringify(palabrasSeleccionadas) === JSON.stringify(leccionActual.traduccionCorrecta);
 
-    estadoNormal.classList.add('oculto');
+        estadoNormal.classList.add('oculto');
 
-    if (esCorrecta) {
-        textoExito.textContent = `Significado: ${leccionActual.traduccionCorrecta.join(' ')}`;
-        estadoExito.classList.add('activo');
+        // Simulamos obtener el usuario actual activo (tomamos el primero de la lista para el prototipo)
+        let usuarios = usuarioService.getUsuarios();
+        let usuarioActual = usuarios.length > 0 ? usuarios[0] : null;
 
-        // Sumar XP al usuario dentro del array 'usuarios'
-        const usuariosStr = localStorage.getItem('usuarios');
-        if (usuariosStr) {
-            const usuarios = JSON.parse(usuariosStr);
-            if (usuarios.length > 0) {
-                if (usuarios[0].xp === undefined) usuarios[0].xp = 0;
-                usuarios[0].xp += 50; 
+        if (esCorrecta) {
+            textoExito.textContent = `Significado: ${leccionActual.traduccionCorrecta.join(' ')}`;
+            estadoExito.classList.add('activo');
+
+            // Sumar XP usando el servicio o actualizando el objeto
+            if (usuarioActual) {
+                usuarioActual.xp = (usuarioActual.xp || 0) + 50;
                 localStorage.setItem('usuarios', JSON.stringify(usuarios));
             }
-        }
-    } else {
-        textoError.textContent = `Solución: ${leccionActual.traduccionCorrecta.join(' ')}`;
-        estadoError.classList.add('activo');
+        } else {
+            textoError.textContent = `Solución: ${leccionActual.traduccionCorrecta.join(' ')}`;
+            estadoError.classList.add('activo');
 
-        // Restar vida al usuario dentro del array 'usuarios' de forma limpia y controlada
-        const usuariosStr = localStorage.getItem('usuarios');
-        if (usuariosStr) {
-            const usuarios = JSON.parse(usuariosStr);
-            if (usuarios.length > 0) {
-                if (usuarios[0].vidas === undefined || usuarios[0].vidas === null) {
-                    usuarios[0].vidas = 3;
+            if (usuarioActual) {
+                if (usuarioActual.vidas === undefined || usuarioActual.vidas === null) {
+                    usuarioActual.vidas = 3;
                 }
                 
-                usuarios[0].vidas -= 1; 
-                if (usuarios[0].vidas < 0) usuarios[0].vidas = 0;
+                usuarioActual.vidas -= 1; 
+                if (usuarioActual.vidas < 0) usuarioActual.vidas = 0;
 
                 localStorage.setItem('usuarios', JSON.stringify(usuarios));
                 
                 const contadorVidas = document.getElementById('contador-vidas');
                 if (contadorVidas) {
-                    contadorVidas.textContent = `Vidas: ${usuarios[0].vidas}`;
+                    contadorVidas.textContent = `Vidas: ${usuarioActual.vidas}`;
                 }
 
                 // Si las vidas llegan a 0, ponemos un enlace interactivo al mapa y el botón a la tienda
-                if (usuarios[0].vidas === 0) {
+                if (usuarioActual.vidas === 0) {
                     textoError.innerHTML = `¡Te quedaste sin vidas! Esperá 1 hora en tu <a href="dashboard.html" style="text-decoration: underline; color: inherit; font-weight: bold;">mapa</a> para recargar o ve a la tienda.`;
                     
                     btnContinuarError.textContent = "Ir a la Tienda";
@@ -166,31 +171,32 @@ btnComprobar.addEventListener('click', () => {
                         palabrasSeleccionadas = [];
                         renderizar();
                     };
-                
                 }
             }
         }
-    }
-});
+    });
+}
 
 // Botón Continuar (Éxito): Avanzar a la siguiente oración o finalizar
-btnContinuarExito.addEventListener('click', () => {
-    indiceActual++;
-    
-    // Si quedan más oraciones en la lección
-    if (indiceActual < lecciones.length) {
-        estadoExito.classList.remove('activo');
-        estadoNormal.classList.remove('oculto');
-        cargarLeccionActual();
-    } else {
-        // Si era la última oración, la lección se completó al 100% y volvemos al dashboard
-        if (barraProgreso && textoPorcentaje) {
-            barraProgreso.value = 100;
-            textoPorcentaje.textContent = '100%';
+if (btnContinuarExito) {
+    btnContinuarExito.addEventListener('click', () => {
+        indiceActual++;
+        
+        // Si quedan más oraciones en lección
+        if (indiceActual < lecciones.length) {
+            estadoExito.classList.remove('activo');
+            estadoNormal.classList.remove('oculto');
+            cargarLeccionActual();
+        } else {
+            // Si era la última oración, la lección se completó y volvemos al dashboard
+            if (barraProgreso && textoPorcentaje) {
+                barraProgreso.value = 100;
+                textoPorcentaje.textContent = '100%';
+            }
+            window.location.href = 'dashboard.html';
         }
-        window.location.href = 'dashboard.html';
-    }
-});
+    });
+}
 
 // Inicializar la primera oración al cargar la página
 cargarLeccionActual();

@@ -1,4 +1,4 @@
-import { StorageService } from './services/storage.service.js';
+import { StorageService } from '../services/storage.service.js';
 
 // 1. Capturamos el formulario y los inputs por su ID
 const formularioRegistro = document.querySelector('form');

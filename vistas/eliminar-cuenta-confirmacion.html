@@ -28,12 +28,16 @@
         </p>
 
         <div class="acciones-confirmacion">
-          <a href="registro.html" class="btn btn-primario"> Sí, eliminar </a>
-          <a href="perfil.html" class="btn btn-secundario btn-bloque">
+          <!-- Agregamos los IDs para que JavaScript los controle -->
+          <a href="#" id="btn-confirmar" class="btn btn-primario"> Sí, eliminar </a>
+          <a href="perfil.html" id="btn-cancelar" class="btn btn-secundario btn-bloque">
             Cancelar
           </a>
         </div>
       </section>
     </main>
+    
+    <!-- Script vinculado correctamente -->
+    <script type="module" src="../js/view/eliminar-cuenta.js"></script>
   </body>
 </html>
