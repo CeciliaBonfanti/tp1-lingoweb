@@ -1,24 +1,23 @@
 import { getData, saveData } from '../services/storage.service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Verificar si hay un usuario activo logueado
+    // 1. Verificar si hay un usuario activo logueado (Protección de ruta)
     const usuarioActivo = getData('usuarioActivo');
     
-    // Si no hay sesión activa, redirigir al index (login)
     if (!usuarioActivo || Object.keys(usuarioActivo).length === 0) {
         window.location.href = '../index.html';
         return;
     }
 
-    // 2. Elementos del DOM a rellenar dinámicamente
+    // 2. Elementos del DOM a actualizar con los datos del perfil
     const elementoNombre = document.querySelector('.perfil-cabecera h3');
     const elementoUser = document.querySelector('.perfil-cabecera .texto-chico'); // @usuario
     const elementoEmail = document.querySelectorAll('.perfil-cabecera .texto-chico')[2]; // Email
     const avatarPlaceholder = document.querySelector('.avatar-placeholder');
     
     // Elementos de la barra de navegación (Racha y XP)
-    const navRacha = document.querySelector('a[href="racha.html"]');
-    const navXp = document.querySelector('header nav ul li span');
+    const navRacha = document.getElementById('nav-racha') || document.querySelector('a[href="racha.html"]');
+    const navXp = document.getElementById('nav-xp') || document.querySelector('.navbar .nav-enlaces li:last-child span') || document.querySelector('nav ul li span');
 
     // 3. Inyectar los datos del usuario activo en la vista
     if (elementoNombre) elementoNombre.textContent = usuarioActivo.nombre;

@@ -11,10 +11,15 @@ if (formulario) {
         // 1. Traemos los usuarios usando la función getData del storage service
         const usuarios = getData('usuarios');
 
+        const valorIngresado = inputUsuario.value.trim().toLowerCase();
+        const passwordIngresada = inputPassword.value;
+
         // 2. Buscamos si coincide el usuario, el nombre o el email, junto con la contraseña
         const usuarioValido = usuarios.find(user => 
-            (user.usuario === inputUsuario.value || user.nombre === inputUsuario.value || user.email === inputUsuario.value) && 
-            user.password === inputPassword.value
+            ((user.usuario && user.usuario.toLowerCase() === valorIngresado) || 
+             (user.email && user.email.toLowerCase() === valorIngresado) || 
+             (user.nombre && user.nombre.toLowerCase() === valorIngresado)) && 
+            user.password === passwordIngresada
         );
 
         if (usuarioValido) {
@@ -22,7 +27,7 @@ if (formulario) {
             localStorage.setItem('usuarioActivo', JSON.stringify(usuarioValido));
 
             // 4. Redirigimos al dashboard
-            window.location.href = '../vistas/dashboard.html'; 
+            window.location.href = 'vistas/dashboard.html'; 
         } else {
             alert('Credenciales Incorrectas. Por favor, verificá tu usuario o contraseña.');
         }

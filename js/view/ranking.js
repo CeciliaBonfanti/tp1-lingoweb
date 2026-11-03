@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Actualizar los datos de la barra superior (Racha y XP del usuario activo)
-    const navRacha = document.querySelector('a[href="racha.html"]');
-    const navXp = document.querySelector('header nav ul li span');
+    const navRacha = document.getElementById('nav-racha') || document.querySelector('a[href="racha.html"]');
+    const navXp = document.getElementById('nav-xp') || document.querySelector('.navbar .nav-enlaces li:last-child span') || document.querySelector('nav ul li span');
 
     if (navRacha) navRacha.textContent = `🔥 ${usuarioActivo.racha ?? 0} Días`;
     if (navXp) navXp.textContent = `⚡ ${usuarioActivo.xp ?? 0} XP`;

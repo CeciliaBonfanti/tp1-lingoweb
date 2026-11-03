@@ -7,7 +7,8 @@ export const usuariosIniciales = [
         email: "juan@unlam.edu.ar",
         password: "123",
         xp: 350,
-        racha: 5
+        racha: 5,
+        vidas: 3
     }
 ];
 

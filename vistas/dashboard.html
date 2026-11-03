@@ -21,8 +21,8 @@
             <li><a href="perfil.html">Perfil</a></li>
             <li><a href="ranking.html">Ranking</a></li>
             <li><a href="tienda.html">Tienda</a></li>
-            <li><a href="racha.html">🔥 5 Días</a></li>
-            <li><span>⚡ 350 XP </span></li>
+            <li><a href="racha.html" id="nav-racha">🔥 -- Días</a></li>
+            <li><span id="nav-xp">⚡ -- XP</span></li>
         </ul>
     </nav>
 
@@ -33,29 +33,20 @@
         <div class="dashboard-layout">
 
             <!-- SECCIÓN DE SELECCIÓN DE IDIOMAS (COLUMNA IZQUIERDA) -->
-            <section class="grilla-tarjetas">
-
-                <!-- Curso 1: Inglés -->
-                
-
-                <!-- Curso 2: Alemán -->
-                
-
-                <!-- Curso 3: Chino Mandarín -->
-                
-
+            <section class="grilla-tarjetas" aria-live="polite">
+                <!-- Se puebla dinámicamente desde cursos.js -->
             </section>
 
             <!-- SECCIÓN LATERAL DE RESUMEN (COLUMNA DERECHA) -->
             <aside class="sidebar-estadisticas">
-                <div class="tarjeta tarjeta-stats ">
+                <div class="tarjeta tarjeta-stats">
                     <h3>Estadísticas</h3>
 
-                    <div class="stat-item ">
+                    <div class="stat-item">
                         <span class="stat-icon">🏆</span>
                         <div>
                             <span class="stat-label">Liga</span>
-                            <strong>Bronce</strong>
+                            <strong id="stat-liga">Bronce</strong>
                         </div>
                     </div>
 
@@ -63,7 +54,7 @@
                         <span class="stat-icon">🎯</span>
                         <div>
                             <span class="stat-label">Meta</span>
-                            <strong>50 XP/día</strong>
+                            <strong id="stat-meta">50 XP/día</strong>
                         </div>
                     </div>
                 </div>

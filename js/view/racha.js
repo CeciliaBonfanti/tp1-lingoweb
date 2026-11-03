@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Elementos del DOM a actualizar dinámicamente
-    const navRacha = document.querySelector('a[href="racha.html"]');
-    const navXp = document.querySelector('header nav ul li span');
+    const navRacha = document.getElementById('nav-racha') || document.querySelector('a[href="racha.html"]');
+    const navXp = document.getElementById('nav-xp') || document.querySelector('.navbar .nav-enlaces li:last-child span') || document.querySelector('nav ul li span');
     
     // Tarjeta de Estado Actual
     const tituloRachaActual = document.querySelector('.tarjeta h2');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tarjeta de Historial / Resumen
     const textosHistorial = document.querySelectorAll('.tarjeta .texto-chico');
-    const textoMejorRacha = document.querySelector('.tarjeta article:nth-of-type(2) .nivel-texto strong');
+    const textoMejorRacha = document.querySelector('.tarjeta:nth-of-type(2) .nivel-texto strong');
 
     // 3. Inyectar datos en la barra de navegación superior
     const rachaActual = usuarioActivo.racha ?? 0;
@@ -43,24 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (textoFechaInicio) {
-        // Si el usuario tiene guardada una fecha la usa, sino pone una por defecto o indicativa
-        textoFechaInicio.textContent = usuarioActivo.fechaInicioRacha || 'Septiembre de 2026';
+        textoFechaInicio.textContent = usuarioActivo.fechaInicioRacha || 'Noviembre de 2026';
     }
 
     // 5. Inyectar datos en la Tarjeta de Historial / Resumen
     if (textoMejorRacha) {
-        // Calculamos un estimado o usamos una propiedad si la agregas al modelo en el futuro
-        const mejorRachaHistorica = usuarioActivo.mejorRacha || Math.max(rachaActual, 14);
+        const mejorRachaHistorica = usuarioActivo.mejorRacha || rachaActual;
         textoMejorRacha.textContent = `${mejorRachaHistorica} Días`;
     }
 
-    // Actualizar lecciones completadas si existen en el array del usuario
-    const totalLecciones = usuarioActivo.leccionesCompletadas ? usuarioActivo.leccionesCompletadas.length : 12;
+    // Actualizar total de lecciones completadas
+    const leccionesCompletadas = getData('leccionesCompletadas') || {};
+    const totalCompletadas = Object.keys(leccionesCompletadas).filter(k => leccionesCompletadas[k]?.completed).length;
     
-    // Buscamos el párrafo que muestra el total de lecciones de la semana
     textosHistorial.forEach(p => {
         if (p.textContent.includes('Total de lecciones esta semana:')) {
-            p.textContent = `Total de lecciones esta semana: ${totalLecciones}`;
+            p.textContent = `Total de lecciones esta semana: ${totalCompletadas}`;
         }
     });
 });
