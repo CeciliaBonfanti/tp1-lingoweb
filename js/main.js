@@ -11,14 +11,12 @@ function inicializarSistema() {
         const juan = usuariosExistentes.find(u => u.id === 1);
         if (juan) {
             let modificado = false;
-            if (!juan.leccionesCompletadas || juan.leccionesCompletadas.length === 0) {
-                juan.leccionesCompletadas = ["ingles_1", "ingles_2", "aleman_1"];
-                modificado = true;
-            }
+            
             if (juan.password === "123") {
                 juan.password = "12345678";
                 modificado = true;
             }
+            
             if (modificado) {
                 saveData('usuarios', usuariosExistentes);
                 const usuarioActivo = getData('usuarioActivo');
@@ -28,7 +26,8 @@ function inicializarSistema() {
             }
         }
     }
-
+    
+    // 2. Cargar los 8 cursos... (tu código sigue normal hacia abajo)
     // 2. Cargar los 8 cursos de idiomas si no existen o actualizar
     const cursosExistentes = getData('cursos');
     if (cursosExistentes.length === 0) {

@@ -6,20 +6,16 @@ export const usuariosIniciales = [
         usuario: "juanperez_web",
         email: "juan@unlam.edu.ar",
         password: "12345678",
-        xp: 350,
-        racha: 5,
+        xp: 50,
+        racha: 1,
         vidas: 3,
-        leccionesCompletadas: ["ingles_1", "ingles_2", "aleman_1"],
+        leccionesCompletadas: [],
         tiempoSinVidas: null
     }
 ];
 
 // Progreso inicial para el usuario de prueba Juan Pérez
-export const leccionesCompletadasIniciales = {
-    "ingles_1": { completed: true, avance: 2, total: 2, fecha: "2026-11-01" },
-    "ingles_2": { completed: true, avance: 2, total: 2, fecha: "2026-11-02" },
-    "aleman_1": { completed: true, avance: 2, total: 2, fecha: "2026-11-03" }
-};
+export const leccionesCompletadasIniciales = {};
 
 // 2. Títulos estándar para las 4 lecciones de todos los cursos
 export const titulosLecciones = {
