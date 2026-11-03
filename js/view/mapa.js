@@ -1,5 +1,6 @@
-import { getData } from '../services/storage.service.js';
+import { getData, saveData } from '../services/storage.service.js';
 import { UsuarioService } from '../services/usuario.service.js';
+import { preguntasIniciales, titulosLecciones } from '../../data/initial_data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const usuarioService = new UsuarioService();
@@ -26,9 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const parametrosURL = new URLSearchParams(window.location.search);
     const cursoId = parametrosURL.get('curso');
 
-    // 5. Traer los cursos y las preguntas del localStorage
+    // 5. Traer los cursos y las preguntas del localStorage (sincronizando si faltan o se actualizaron)
     const cursos = getData('cursos') || [];
-    const preguntas = getData('preguntas') || [];
+    let preguntas = getData('preguntas') || [];
+    if (preguntas.length === 0) {
+        preguntas = preguntasIniciales;
+        saveData('preguntas', preguntas);
+    } else {
+        const mapaNuevas = new Map(preguntasIniciales.map(p => [p.id, p]));
+        preguntas = preguntas.map(p => mapaNuevas.has(p.id) ? mapaNuevas.get(p.id) : p);
+        const idsExistentes = new Set(preguntas.map(p => p.id));
+        const faltantes = preguntasIniciales.filter(p => !idsExistentes.has(p.id));
+        if (faltantes.length > 0) {
+            preguntas = [...preguntas, ...faltantes];
+        }
+        saveData('preguntas', preguntas);
+    }
 
     // 6. Buscar el curso actual que coincide con el ID
     const cursoActual = cursos.find(c => c.id === cursoId);
@@ -82,13 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                const preguntaDeLeccion = preguntasCurso.find(p => p.leccionId === leccionId);
+                const tituloLeccion = preguntaDeLeccion?.tituloLeccion || titulosLecciones[leccionId] || `Lección ${leccionId}`;
+
                 const tarjeta = document.createElement('article');
                 tarjeta.classList.add('tarjeta');
                 tarjeta.innerHTML = `
                     <div class="tarjeta-header">
                         <h2>Lección ${index + 1}</h2>
                     </div>
-                    <p class="texto-chico">Práctica de traducción y vocabulario.</p>
+                    <p class="texto-chico">${tituloLeccion}</p>
                     <p class="nivel-texto">Progreso: ${porcentaje}%</p>
                     <a href="leccion.html?curso=${cursoId}&leccion=${leccionId}" class="btn btn-primario">${textoBtnLeccion}</a>
                 `;

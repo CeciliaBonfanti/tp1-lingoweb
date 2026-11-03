@@ -18,7 +18,13 @@ if (formularioRegistro) {
         const usernameVal = inputUsuario.value.trim().toLowerCase();
         const emailVal = inputEmail.value.trim().toLowerCase();
 
-        // 3. Validamos que el email o el usuario no estén repetidos
+        // 3. Validamos que la contraseña tenga al menos 8 caracteres
+        if (inputPassword.value.length < 8) {
+            alert('La contraseña debe tener al menos 8 caracteres.');
+            return;
+        }
+
+        // 4. Validamos que el email o el usuario no estén repetidos
         const usuarioRepetido = usuarios.find(user => 
             (user.usuario && user.usuario.toLowerCase() === usernameVal) || 
             (user.email && user.email.toLowerCase() === emailVal)

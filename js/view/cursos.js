@@ -1,4 +1,5 @@
-import { getData } from '../services/storage.service.js';
+import { getData, saveData } from '../services/storage.service.js';
+import { cursosIniciales, preguntasIniciales, leccionesCompletadasIniciales } from '../../data/initial_data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Verificamos que haya un usuario con sesión activa (Protección de ruta)
@@ -14,26 +15,47 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navRacha) navRacha.textContent = `🔥 ${usuarioActivo.racha ?? 0} Días`;
     if (navXp) navXp.textContent = `⚡ ${usuarioActivo.xp ?? 0} XP`;
 
-    // 3. Actualizamos la tarjeta de estadísticas de la barra lateral
-    const statLiga = document.getElementById('stat-liga');
-    const statMeta = document.getElementById('stat-meta');
+    // 3. Actualizamos la tarjeta de estadísticas de la barra lateral (Progreso y Recursos)
+    let leccionesCompletadasGuardadas = getData('leccionesCompletadas');
+    if (!leccionesCompletadasGuardadas || Object.keys(leccionesCompletadasGuardadas).length === 0) {
+        leccionesCompletadasGuardadas = leccionesCompletadasIniciales;
+        saveData('leccionesCompletadas', leccionesCompletadasGuardadas);
+    }
+    const totalLeccionesSuperadas = Object.values(leccionesCompletadasGuardadas).filter(l => l?.completed).length;
 
-    if (statLiga) {
-        const xp = usuarioActivo.xp ?? 0;
-        if (xp >= 1000) statLiga.textContent = 'Oro';
-        else if (xp >= 500) statLiga.textContent = 'Plata';
-        else statLiga.textContent = 'Bronce';
+    const statLecciones = document.getElementById('stat-lecciones');
+    const statVidas = document.getElementById('stat-vidas');
+
+    if (statLecciones) {
+        statLecciones.textContent = `${totalLeccionesSuperadas} superadas`;
     }
 
-    if (statMeta) {
-        const xpHoy = usuarioActivo.xp ?? 0;
-        statMeta.textContent = `${Math.min(xpHoy, 50)} / 50 XP/día`;
+    if (statVidas) {
+        statVidas.textContent = `${usuarioActivo.vidas ?? 3} / 3`;
     }
 
     // 4. Traemos los cursos, preguntas y lecciones completadas para calcular progreso real
-    const cursos = getData('cursos') || [];
-    const preguntas = getData('preguntas') || [];
-    const leccionesCompletadas = getData('leccionesCompletadas') || {};
+    let cursos = getData('cursos') || [];
+    if (cursos.length === 0) {
+        cursos = cursosIniciales;
+        saveData('cursos', cursos);
+    }
+
+    let preguntas = getData('preguntas') || [];
+    if (preguntas.length === 0) {
+        preguntas = preguntasIniciales;
+        saveData('preguntas', preguntas);
+    } else {
+        const mapaNuevas = new Map(preguntasIniciales.map(p => [p.id, p]));
+        preguntas = preguntas.map(p => mapaNuevas.has(p.id) ? mapaNuevas.get(p.id) : p);
+        const idsExistentes = new Set(preguntas.map(p => p.id));
+        const faltantes = preguntasIniciales.filter(p => !idsExistentes.has(p.id));
+        if (faltantes.length > 0) {
+            preguntas = [...preguntas, ...faltantes];
+        }
+        saveData('preguntas', preguntas);
+    }
+    const leccionesCompletadas = leccionesCompletadasGuardadas;
 
     const contenedor = document.querySelector('.grilla-tarjetas');
 

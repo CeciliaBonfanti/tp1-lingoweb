@@ -28,19 +28,21 @@ const parametrosURL = new URLSearchParams(window.location.search);
 const cursoSeleccionadoId = parametrosURL.get('curso') || 'ingles';
 const leccionSeleccionadaId = parseInt(parametrosURL.get('leccion')) || 1;
 
-// 4. Asegurar sincronización de preguntas con datos iniciales si no existen
+// 4. Asegurar sincronización de preguntas con datos iniciales si no existen o se actualizaron
 let todasLasPreguntas = getData('preguntas') || [];
 if (todasLasPreguntas.length === 0) {
     todasLasPreguntas = preguntasIniciales;
     saveData('preguntas', todasLasPreguntas);
 } else {
-    // Si hay preguntas guardadas pero faltan de otros cursos, sincronizamos
+    // Sincronizamos las preguntas con la última versión de initial_data
+    const mapaNuevas = new Map(preguntasIniciales.map(p => [p.id, p]));
+    todasLasPreguntas = todasLasPreguntas.map(p => mapaNuevas.has(p.id) ? mapaNuevas.get(p.id) : p);
     const idsExistentes = new Set(todasLasPreguntas.map(p => p.id));
     const faltantes = preguntasIniciales.filter(p => !idsExistentes.has(p.id));
     if (faltantes.length > 0) {
         todasLasPreguntas = [...todasLasPreguntas, ...faltantes];
-        saveData('preguntas', todasLasPreguntas);
     }
+    saveData('preguntas', todasLasPreguntas);
 }
 
 // 2-A: Consistencia en el filtrado de lecciones usando una única colección
@@ -66,6 +68,8 @@ const oracionOriginal = document.getElementById('oracion-original');
 const bancoPalabras = document.getElementById('banco-palabras');
 const contenedorRespuesta = document.getElementById('contenedor-respuesta');
 const contadorVidas = document.getElementById('contador-vidas');
+const leccionUsuarioNombre = document.getElementById('leccion-usuario-nombre');
+const leccionUsuarioXp = document.getElementById('leccion-usuario-xp');
 
 const btnComprobar = document.getElementById('btn-comprobar');
 const estadoNormal = document.getElementById('estado-normal');
@@ -76,12 +80,27 @@ const textoError = document.getElementById('texto-error');
 const btnContinuarExito = document.getElementById('btn-continuar-exito');
 const btnContinuarError = document.getElementById('btn-continuar-error');
 
+// Elementos de la pantalla de resumen final
+const pantallaResumen = document.getElementById('pantalla-resumen');
+const resumenXp = document.getElementById('resumen-xp');
+const resumenRacha = document.getElementById('resumen-racha');
+const resumenCorrectas = document.getElementById('resumen-correctas');
+const resumenSubtitulo = document.getElementById('resumen-subtitulo');
+const btnResumenMapa = document.getElementById('btn-resumen-mapa');
+
 // Elementos de la barra de progreso
 const barraProgreso = document.getElementById('barra-progreso');
 const textoPorcentaje = document.getElementById('texto-porcentaje');
 
+// Configurar botón de cancelar para volver al mapa del curso actual
+const btnCancelarLeccion = document.getElementById('btn-cancelar-leccion') || document.querySelector('.navbar a:has(img[alt="Cancelar lección"])');
+if (btnCancelarLeccion) {
+    btnCancelarLeccion.href = `mapa.html?curso=${cursoSeleccionadoId}`;
+}
+
 let palabrasSeleccionadas = [];
 let palabrasDisponibles = [];
+let respuestasCorrectas = 0; // Contador de respuestas correctas en esta lección
 
 // Diccionario de idiomas para banderas y títulos
 const idiomasConfig = {
@@ -93,13 +112,20 @@ const idiomasConfig = {
     'espanol': { bandera: '../imagenes/bandera-de.png', titulo: 'Español' },
     'japones': { bandera: '../imagenes/bandera-gb.png', titulo: 'Japonés' },
     'chino': { bandera: '../imagenes/bandera-cn.png', titulo: 'Chino' },
-    'coreano': { bandera: '../imagenes/bandera-gb.png', titulo: 'Coreano' }
+    'coreano': { bandera: '../imagenes/bandera-gb.png', titulo: 'Coreano' },
+    'ruso': { bandera: '../imagenes/bandera-gb.png', titulo: 'Ruso' }
 };
 
-// Función para actualizar las vidas en pantalla
+// Función para actualizar las vidas y los datos del estudiante en pantalla
 function actualizarInterfazVidas() {
     if (contadorVidas) {
         contadorVidas.textContent = `Vidas: ${usuarioActivo.vidas ?? 0}`;
+    }
+    if (leccionUsuarioNombre && usuarioActivo) {
+        leccionUsuarioNombre.textContent = `${usuarioActivo.nombre || usuarioActivo.usuario} (@${usuarioActivo.usuario || 'usuario'})`;
+    }
+    if (leccionUsuarioXp && usuarioActivo) {
+        leccionUsuarioXp.textContent = `${usuarioActivo.xp ?? 0} XP`;
     }
 }
 
@@ -227,6 +253,7 @@ if (btnComprobar) {
             // Sumar XP real al usuario logueado (+20 XP por oración correcta)
             usuarioActual.xp = (usuarioActual.xp || 0) + 20;
             usuarioActivo.xp = usuarioActual.xp;
+            respuestasCorrectas++;
 
             usuarioService.sincronizarUsuario(usuarioActual);
 
@@ -343,6 +370,15 @@ if (btnContinuarExito) {
                     fecha: hoy
                 };
                 saveData('leccionesCompletadas', leccionesCompletadas);
+
+                // Sincronizar lecciones completadas también en el objeto usuario
+                if (!Array.isArray(usuarioActual.leccionesCompletadas)) {
+                    usuarioActual.leccionesCompletadas = [];
+                }
+                if (!usuarioActual.leccionesCompletadas.includes(claveLeccion)) {
+                    usuarioActual.leccionesCompletadas.push(claveLeccion);
+                }
+                usuarioActivo.leccionesCompletadas = usuarioActual.leccionesCompletadas;
 
                 // Persistir usuario (las vidas remanentes se conservan intactas)
                 usuarioService.sincronizarUsuario(usuarioActual);

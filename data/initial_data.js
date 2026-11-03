@@ -5,16 +5,31 @@ export const usuariosIniciales = [
         nombre: "Juan Pérez",
         usuario: "juanperez_web",
         email: "juan@unlam.edu.ar",
-        password: "123",
+        password: "12345678",
         xp: 350,
         racha: 5,
         vidas: 3,
-        leccionesCompletadas: [],
+        leccionesCompletadas: ["ingles_1", "ingles_2", "aleman_1"],
         tiempoSinVidas: null
     }
 ];
 
-// 2. Los 8 Cursos de diferentes idiomas
+// Progreso inicial para el usuario de prueba Juan Pérez
+export const leccionesCompletadasIniciales = {
+    "ingles_1": { completed: true, avance: 2, total: 2, fecha: "2026-11-01" },
+    "ingles_2": { completed: true, avance: 2, total: 2, fecha: "2026-11-02" },
+    "aleman_1": { completed: true, avance: 2, total: 2, fecha: "2026-11-03" }
+};
+
+// 2. Títulos estándar para las 4 lecciones de todos los cursos
+export const titulosLecciones = {
+    1: "Frases Básicas",
+    2: "Presentaciones",
+    3: "Vocabulario de Familia",
+    4: "Vocabulario de Viajes"
+};
+
+// 3. Los 8 Cursos de diferentes idiomas
 export const cursosIniciales = [
     {
         id: 'ingles',
@@ -34,14 +49,14 @@ export const cursosIniciales = [
         id: 'chino',
         nombre: 'Chino Mandarín',
         nivel: 'Básico',
-        descripcion: 'Primeros pasos en caracteres y tonos.',
+        descripcion: 'Primeros pasos en caracteres',
         bandera: '../imagenes/bandera-cn.png'
     },
     {
         id: 'frances',
         nombre: 'Francés',
         nivel: 'Básico',
-        descripcion: 'Fonética, saludos y vocabulario cotidiano.',
+        descripcion: 'Saludos y vocabulario cotidiano.',
         bandera: '../imagenes/bandera-gb.png'
     },
     {
@@ -62,7 +77,7 @@ export const cursosIniciales = [
         id: 'japones',
         nombre: 'Japonés',
         nivel: 'Básico',
-        descripcion: 'Silabarios básicos y frases de cortesía.',
+        descripcion: 'Frases de cortesía.',
         bandera: '../imagenes/bandera-gb.png'
     },
     {
@@ -71,593 +86,735 @@ export const cursosIniciales = [
         nivel: 'Básico',
         descripcion: 'Introducción al Hangul y gramática elemental.',
         bandera: '../imagenes/bandera-gb.png'
+    },
+    {
+        id: 'ruso',
+        nombre: 'Ruso',
+        nivel: 'Básico',
+        descripcion: 'Aprende el alfabeto cirílico y expresiones básicas.',
+        bandera: '../imagenes/bandera-gb.png'
     }
 ];
 
+// 4. Preguntas de las 4 lecciones temáticas para cada uno de los 8 idiomas
 export const preguntasIniciales = [
-    // --- INGLÉS: Lección 1 ---
+    // =============================================
+    // --- INGLÉS ---
+    // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 1,
         leccionId: 1,
+        tituloLeccion: "Frases Básicas",
         idioma: "ingles",
-        oracionOriginal: "Hello, nice to meet you.",
-        traduccionCorrecta: ["Hola,", "encantado", "de", "conocerte"],
-        bancoPalabras: ["de", "triste", "Hola,", "tu", "encantado", "Adios,", "conocerte"]
+        oracionOriginal: "Hello, how are you today?",
+        traduccionCorrecta: ["Hola,", "¿cómo", "estás", "hoy?"],
+        bancoPalabras: ["hoy?", "Hola,", "adiós,", "¿cómo", "mal", "estás", "mañana"]
     },
     {
         id: 2,
         leccionId: 1,
+        tituloLeccion: "Frases Básicas",
         idioma: "ingles",
-        oracionOriginal: "Good morning, how are you?",
-        traduccionCorrecta: ["Buenos", "días,", "¿cómo", "estás?"],
-        bancoPalabras: ["noches", "¿cómo", "estás?", "mal", "Buenos", "días,", "hola"]
+        oracionOriginal: "Good morning, thank you very much.",
+        traduccionCorrecta: ["Buenos", "días,", "muchas", "gracias."],
+        bancoPalabras: ["muchas", "noches", "días,", "por", "gracias.", "Buenos", "favor"]
     },
-
-    // --- INGLÉS: Lección 2 ---
+    // Lección 2: Presentaciones
     {
         id: 3,
         leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "ingles",
-        oracionOriginal: "I am a web developer student.",
-        traduccionCorrecta: ["Soy", "estudiante", "de", "desarrollo", "web."],
-        bancoPalabras: ["desarrollo", "Soy", "web.", "estudiante", "la", "profesor", "de", "programador"]
+        oracionOriginal: "My name is John and I am a student.",
+        traduccionCorrecta: ["Mi", "nombre", "es", "John", "y", "soy", "estudiante."],
+        bancoPalabras: ["es", "Mi", "profesor.", "y", "John", "nombre", "soy", "tu", "estudiante."]
     },
     {
         id: 4,
         leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "ingles",
-        oracionOriginal: "I live in a family house.",
-        traduccionCorrecta: ["Vivo", "en", "una", "casa", "familiar."],
-        bancoPalabras: ["casa", "una", "Vivo", "trabajo", "en", "familiar.", "departamento"]
+        oracionOriginal: "Nice to meet you, I am from Argentina.",
+        traduccionCorrecta: ["Mucho", "gusto,", "soy", "de", "Argentina."],
+        bancoPalabras: ["Argentina.", "Mucho", "en", "gusto,", "vivo", "soy", "de", "España."]
     },
-
-    // --- ALEMÁN: Lección 1 ---
+    // Lección 3: Vocabulario de Familia
     {
         id: 5,
-        leccionId: 1,
-        idioma: "aleman",
-        oracionOriginal: "Guten Tag, wie geht es dir?",
-        traduccionCorrecta: ["Buenos", "días,", "¿cómo", "estás?"],
-        bancoPalabras: ["Buenos", "días,", "¿cómo", "estás?", "mal", "noches", "gracias"]
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "ingles",
+        oracionOriginal: "My mother and my father are at home.",
+        traduccionCorrecta: ["Mi", "madre", "y", "mi", "padre", "están", "en", "casa."],
+        bancoPalabras: ["en", "Mi", "padre", "madre", "escuela.", "y", "mi", "están", "casa.", "tío"]
     },
     {
         id: 6,
-        leccionId: 1,
-        idioma: "aleman",
-        oracionOriginal: "Hallo, freut mich dich kennenzulernen.",
-        traduccionCorrecta: ["Hola,", "encantado", "de", "conocerte."],
-        bancoPalabras: ["Hola,", "de", "conocerte.", "adiós", "encantado", "triste"]
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "ingles",
+        oracionOriginal: "I have a brother and a sister.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["una", "Tengo", "hijo", "hermano", "y", "un", "abuelo", "hermana."]
     },
-
-    // --- FRANCÉS: Lección 1 ---
+    // Lección 4: Vocabulario de Viajes
     {
         id: 7,
-        leccionId: 1,
-        idioma: "frances",
-        oracionOriginal: "Bonjour, comment allez-vous?",
-        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
-        bancoPalabras: ["Hola,", "¿cómo", "estás?", "adiós", "bien", "tarde"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "ingles",
+        oracionOriginal: "Where is the train station?",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["está", "¿Dónde", "de", "aeropuerto?", "la", "estación", "tren?", "el"]
     },
     {
         id: 8,
-        leccionId: 1,
-        idioma: "frances",
-        oracionOriginal: "Enchanté de faire votre connaissance.",
-        traduccionCorrecta: ["Encantado", "de", "conocerte."],
-        bancoPalabras: ["Encantado", "de", "conocerte.", "gracias", "triste", "mucho"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "ingles",
+        oracionOriginal: "I need my passport for the flight.",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "vuelo."],
+        bancoPalabras: ["para", "Necesito", "boleto", "el", "mi", "pasaporte", "vuelo.", "hotel"]
     },
 
-    // --- ITALIANO: Lección 1 ---
+    // =============================================
+    // --- ALEMÁN ---
+    // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 9,
         leccionId: 1,
-        idioma: "italiano",
-        oracionOriginal: "Ciao, come stai?",
-        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
-        bancoPalabras: ["Hola,", "¿cómo", "estás?", "adiós", "bien", "gracias"]
+        tituloLeccion: "Frases Básicas",
+        idioma: "aleman",
+        oracionOriginal: "Guten Tag, wie geht es dir?",
+        traduccionCorrecta: ["Buenos", "días,", "¿cómo", "estás?"],
+        bancoPalabras: ["¿cómo", "Buenos", "estás?", "noches", "días,", "mal", "gracias"]
     },
     {
         id: 10,
         leccionId: 1,
-        idioma: "italiano",
-        oracionOriginal: "Piacere di conoscerti.",
-        traduccionCorrecta: ["Mucho", "gusto", "en", "conocerte."],
-        bancoPalabras: ["Mucho", "gusto", "en", "conocerte.", "triste", "adiós"]
+        tituloLeccion: "Frases Básicas",
+        idioma: "aleman",
+        oracionOriginal: "Vielen Dank und auf Wiedersehen.",
+        traduccionCorrecta: ["Muchas", "gracias", "y", "hasta", "luego."],
+        bancoPalabras: ["y", "Muchas", "hasta", "hola", "gracias", "luego.", "por", "favor"]
     },
-
-    // --- PORTUGUÉS: Lección 1 ---
+    // Lección 2: Presentaciones
     {
         id: 11,
-        leccionId: 1,
-        idioma: "portugues",
-        oracionOriginal: "Olá, como você está?",
-        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
-        bancoPalabras: ["Hola,", "¿cómo", "estás?", "bien", "adiós", "tarde"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "aleman",
+        oracionOriginal: "Ich heiße Lukas und ich bin Student.",
+        traduccionCorrecta: ["Me", "llamo", "Lukas", "y", "soy", "estudiante."],
+        bancoPalabras: ["Lukas", "Me", "profesor.", "llamo", "y", "soy", "estudiante.", "tu"]
     },
     {
         id: 12,
-        leccionId: 1,
-        idioma: "portugues",
-        oracionOriginal: "Muito prazer em conhecê-lo.",
-        traduccionCorrecta: ["Mucho", "gusto", "en", "conocerte."],
-        bancoPalabras: ["Mucho", "gusto", "en", "conocerte.", "triste", "gracias"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "aleman",
+        oracionOriginal: "Freut mich, ich komme aus Deutschland.",
+        traduccionCorrecta: ["Mucho", "gusto,", "vengo", "de", "Alemania."],
+        bancoPalabras: ["Alemania.", "Mucho", "de", "gusto,", "vivo", "en", "vengo", "España."]
     },
-
-    // --- CHINO: Lección 1 ---
+    // Lección 3: Vocabulario de Familia
     {
         id: 13,
-        leccionId: 1,
-        idioma: "chino",
-        oracionOriginal: "你好，你好吗？",
-        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
-        bancoPalabras: ["Hola,", "¿cómo", "estás?", "bien", "gracias", "adiós"]
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "aleman",
+        oracionOriginal: "Meine Mutter und mein Vater sind zu Hause.",
+        traduccionCorrecta: ["Mi", "madre", "y", "mi", "padre", "están", "en", "casa."],
+        bancoPalabras: ["en", "Mi", "padre", "madre", "escuela.", "y", "mi", "están", "casa.", "tío"]
     },
-
-    // --- JAPONÉS: Lección 1 ---
     {
         id: 14,
-        leccionId: 1,
-        idioma: "japones",
-        oracionOriginal: "こんにちは、お元気ですか？",
-        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
-        bancoPalabras: ["Hola,", "¿cómo", "estás?", "bien", "adiós", "gracias"]
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "aleman",
+        oracionOriginal: "Ich habe einen Bruder und eine Schwester.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["un", "Tengo", "hermana.", "una", "tío", "hermano", "y", "abuela"]
     },
-
-    // --- COREANO: Lección 1 ---
+    // Lección 4: Vocabulario de Viajes
     {
         id: 15,
-        leccionId: 1,
-        idioma: "coreano",
-        oracionOriginal: "안녕하세요, 잘 지내세요?",
-        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
-        bancoPalabras: ["Hola,", "¿cómo", "estás?", "bien", "adiós", "gracias"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "aleman",
+        oracionOriginal: "Wo ist der Bahnhof?",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["la", "¿Dónde", "está", "estación", "de", "tren?", "aeropuerto", "el"]
     },
-
-    // --- CHINO: Lección 1 (Pregunta 2) ---
     {
         id: 16,
-        leccionId: 1,
-        idioma: "chino",
-        oracionOriginal: "谢谢你。",
-        traduccionCorrecta: ["Muchas", "gracias."],
-        bancoPalabras: ["Muchas", "gracias.", "por", "favor", "adiós", "hola"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "aleman",
+        oracionOriginal: "Ich brauche meinen Reisepass für die Reise.",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["para", "Necesito", "mi", "hotel", "el", "pasaporte", "viaje.", "boleto"]
     },
 
-    // --- JAPONÉS: Lección 1 (Pregunta 2) ---
+    // =============================================
+    // --- CHINO MANDARÍN ---
+    // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 17,
         leccionId: 1,
-        idioma: "japones",
-        oracionOriginal: "ありがとうございます。",
-        traduccionCorrecta: ["Muchas", "gracias."],
-        bancoPalabras: ["Muchas", "gracias.", "por", "favor", "adiós", "hola"]
+        tituloLeccion: "Frases Básicas",
+        idioma: "chino",
+        oracionOriginal: "你好，早上好。",
+        traduccionCorrecta: ["Hola,", "buenos", "días."],
+        bancoPalabras: ["Hola,", "buenos", "tardes.", "días.", "noches", "adiós"]
     },
-
-    // --- COREANO: Lección 1 (Pregunta 2) ---
     {
         id: 18,
         leccionId: 1,
-        idioma: "coreano",
-        oracionOriginal: "감사합니다.",
-        traduccionCorrecta: ["Muchas", "gracias."],
-        bancoPalabras: ["Muchas", "gracias.", "por", "favor", "adiós", "hola"]
+        tituloLeccion: "Frases Básicas",
+        idioma: "chino",
+        oracionOriginal: "非常感谢，再见。",
+        traduccionCorrecta: ["Muchas", "gracias,", "adiós."],
+        bancoPalabras: ["adiós.", "gracias,", "Muchas", "por", "favor,", "hola"]
     },
-
-    // =============================================
-    // --- INGLÉS: Lección 3 ---
-    // =============================================
+    // Lección 2: Presentaciones
     {
         id: 19,
-        leccionId: 3,
-        idioma: "ingles",
-        oracionOriginal: "I like to read books.",
-        traduccionCorrecta: ["Me", "gusta", "leer", "libros."],
-        bancoPalabras: ["Me", "gusta", "leer", "libros.", "ver", "escribir", "películas"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "chino",
+        oracionOriginal: "我叫王明，我是学生。",
+        traduccionCorrecta: ["Me", "llamo", "Wang", "Ming", "y", "soy", "estudiante."],
+        bancoPalabras: ["Wang", "Me", "Ming", "llamo", "y", "soy", "profesor.", "estudiante.", "él"]
     },
     {
         id: 20,
-        leccionId: 3,
-        idioma: "ingles",
-        oracionOriginal: "She is my best friend.",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "chino",
+        oracionOriginal: "很高兴认识你，我来自中国。",
+        traduccionCorrecta: ["Mucho", "gusto,", "vengo", "de", "China."],
+        bancoPalabras: ["Mucho", "gusto,", "soy", "de", "vengo", "China.", "España.", "vivo"]
     },
-
-    // --- INGLÉS: Lección 4 ---
+    // Lección 3: Vocabulario de Familia
     {
         id: 21,
-        leccionId: 4,
-        idioma: "ingles",
-        oracionOriginal: "We go to school every day.",
-        traduccionCorrecta: ["Vamos", "a", "la", "escuela", "todos", "los", "días."],
-        bancoPalabras: ["Vamos", "a", "la", "escuela", "todos", "los", "días.", "trabajo", "nunca"]
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "chino",
+        oracionOriginal: "我的爸爸和妈妈在家里。",
+        traduccionCorrecta: ["Mi", "padre", "y", "mi", "madre", "están", "en", "casa."],
+        bancoPalabras: ["en", "Mi", "padre", "madre", "escuela.", "y", "mi", "están", "casa.", "tío"]
     },
     {
         id: 22,
-        leccionId: 4,
-        idioma: "ingles",
-        oracionOriginal: "The weather is beautiful today.",
-        traduccionCorrecta: ["El", "clima", "está", "hermoso", "hoy."],
-        bancoPalabras: ["El", "clima", "está", "hermoso", "hoy.", "frío", "malo"]
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "chino",
+        oracionOriginal: "我有一个哥哥和一个姐姐。",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["un", "Tengo", "hermano", "y", "hijo", "una", "hermana.", "abuelo"]
     },
-
-    // =============================================
-    // --- ALEMÁN: Lección 2 ---
-    // =============================================
+    // Lección 4: Vocabulario de Viajes
     {
         id: 23,
-        leccionId: 2,
-        idioma: "aleman",
-        oracionOriginal: "Ich lerne Deutsch.",
-        traduccionCorrecta: ["Estoy", "aprendiendo", "alemán."],
-        bancoPalabras: ["Estoy", "aprendiendo", "alemán.", "inglés", "estudiando", "hablando"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "chino",
+        oracionOriginal: "火车站在哪里？",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["¿Dónde", "la", "de", "estación", "tren?", "está", "hotel?", "el"]
     },
     {
         id: 24,
-        leccionId: 2,
-        idioma: "aleman",
-        oracionOriginal: "Das ist sehr schön.",
-        traduccionCorrecta: ["Eso", "es", "muy", "hermoso."],
-        bancoPalabras: ["Eso", "es", "muy", "hermoso.", "feo", "malo", "aquello"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "chino",
+        oracionOriginal: "旅行需要我的护照。",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["el", "Necesito", "pasaporte", "para", "mi", "viaje.", "boleto", "maleta"]
     },
 
-    // --- ALEMÁN: Lección 3 ---
+    // =============================================
+    // --- FRANCÉS ---
+    // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 25,
-        leccionId: 3,
-        idioma: "aleman",
-        oracionOriginal: "Ich gehe zur Schule.",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "frances",
+        oracionOriginal: "Bonjour, comment allez-vous aujourd'hui?",
+        traduccionCorrecta: ["Hola,", "¿cómo", "está", "usted", "hoy?"],
+        bancoPalabras: ["¿cómo", "Hola,", "hoy?", "usted", "está", "adiós,", "bien"]
     },
     {
         id: 26,
-        leccionId: 3,
-        idioma: "aleman",
-        oracionOriginal: "Ich mag Musik sehr.",
-        traduccionCorrecta: ["Me", "gusta", "mucho", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "mucho", "la", "música.", "cine", "libros"]
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "frances",
+        oracionOriginal: "Merci beaucoup et bonne journée.",
+        traduccionCorrecta: ["Muchas", "gracias", "y", "buen", "día."],
+        bancoPalabras: ["buen", "Muchas", "tardes.", "día.", "gracias", "y", "por", "favor"]
     },
-
-    // --- ALEMÁN: Lección 4 ---
+    // Lección 2: Presentaciones
     {
         id: 27,
-        leccionId: 4,
-        idioma: "aleman",
-        oracionOriginal: "Sie ist meine beste Freundin.",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "frances",
+        oracionOriginal: "Je m'appelle Pierre et je suis étudiant.",
+        traduccionCorrecta: ["Me", "llamo", "Pierre", "y", "soy", "estudiante."],
+        bancoPalabras: ["y", "Me", "Pierre", "llamo", "profesor.", "soy", "estudiante.", "tu"]
     },
     {
         id: 28,
-        leccionId: 4,
-        idioma: "aleman",
-        oracionOriginal: "Wir essen zusammen.",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "frances",
+        oracionOriginal: "Enchanté, je viens de France.",
+        traduccionCorrecta: ["Encantado,", "vengo", "de", "Francia."],
+        bancoPalabras: ["Encantado,", "de", "vengo", "Francia.", "vivo", "en", "España."]
     },
-
-    // =============================================
-    // --- FRANCÉS: Lección 2 ---
-    // =============================================
+    // Lección 3: Vocabulario de Familia
     {
         id: 29,
-        leccionId: 2,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "frances",
-        oracionOriginal: "Je m'appelle Marie.",
-        traduccionCorrecta: ["Me", "llamo", "Marie."],
-        bancoPalabras: ["Me", "llamo", "Marie.", "te", "llamas", "ella", "chamo"]
+        oracionOriginal: "Ma mère et mon père sont à la maison.",
+        traduccionCorrecta: ["Mi", "madre", "y", "mi", "padre", "están", "en", "casa."],
+        bancoPalabras: ["en", "Mi", "padre", "están", "y", "mi", "madre", "casa.", "escuela."]
     },
     {
         id: 30,
-        leccionId: 2,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "frances",
-        oracionOriginal: "J'aime la musique.",
-        traduccionCorrecta: ["Me", "gusta", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "la", "música.", "el", "cine", "libros"]
+        oracionOriginal: "J'ai un frère et une sœur.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["Tengo", "hermano", "un", "y", "hijo", "una", "hermana.", "primo"]
     },
-
-    // --- FRANCÉS: Lección 3 ---
+    // Lección 4: Vocabulario de Viajes
     {
         id: 31,
-        leccionId: 3,
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "frances",
-        oracionOriginal: "Je vais à l'école.",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        oracionOriginal: "Où est la gare de train?",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["está", "¿Dónde", "la", "estación", "de", "tren?", "hotel?", "el"]
     },
     {
         id: 32,
-        leccionId: 3,
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "frances",
-        oracionOriginal: "Il fait beau aujourd'hui.",
-        traduccionCorrecta: ["Hace", "buen", "tiempo", "hoy."],
-        bancoPalabras: ["Hace", "buen", "tiempo", "hoy.", "mal", "frío", "calor"]
+        oracionOriginal: "J'ai besoin de mon passeport pour le voyage.",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["viaje.", "Necesito", "el", "mi", "pasaporte", "para", "boleto", "vuelo."]
     },
 
-    // --- FRANCÉS: Lección 4 ---
+    // =============================================
+    // --- ITALIANO ---
+    // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 33,
-        leccionId: 4,
-        idioma: "frances",
-        oracionOriginal: "Elle est ma meilleure amie.",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "italiano",
+        oracionOriginal: "Buongiorno, come stai oggi?",
+        traduccionCorrecta: ["Buenos", "días,", "¿cómo", "estás", "hoy?"],
+        bancoPalabras: ["Buenos", "¿cómo", "hoy?", "días,", "estás", "tardes,", "mal"]
     },
     {
         id: 34,
-        leccionId: 4,
-        idioma: "frances",
-        oracionOriginal: "Nous mangeons ensemble.",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "italiano",
+        oracionOriginal: "Grazie mille e arrivederci.",
+        traduccionCorrecta: ["Muchas", "gracias", "y", "hasta", "luego."],
+        bancoPalabras: ["y", "Muchas", "hasta", "luego.", "gracias", "hola", "por", "favor"]
     },
-
-    // =============================================
-    // --- ITALIANO: Lección 2 ---
-    // =============================================
+    // Lección 2: Presentaciones
     {
         id: 35,
         leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "italiano",
-        oracionOriginal: "Mi chiamo Marco.",
-        traduccionCorrecta: ["Me", "llamo", "Marco."],
-        bancoPalabras: ["Me", "llamo", "Marco.", "te", "llamas", "él", "se"]
+        oracionOriginal: "Mi chiamo Marco e sono uno studente.",
+        traduccionCorrecta: ["Me", "llamo", "Marco", "y", "soy", "estudiante."],
+        bancoPalabras: ["Marco", "Me", "y", "llamo", "profesor.", "soy", "estudiante.", "tu"]
     },
     {
         id: 36,
         leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "italiano",
-        oracionOriginal: "Mi piace la musica.",
-        traduccionCorrecta: ["Me", "gusta", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "la", "música.", "el", "cine", "libros"]
+        oracionOriginal: "Piacere di conoscerti, vengo dall'Italia.",
+        traduccionCorrecta: ["Mucho", "gusto,", "vengo", "de", "Italia."],
+        bancoPalabras: ["Mucho", "de", "gusto,", "vengo", "Italia.", "vivo", "en", "Roma."]
     },
-
-    // --- ITALIANO: Lección 3 ---
+    // Lección 3: Vocabulario de Familia
     {
         id: 37,
         leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "italiano",
-        oracionOriginal: "Vado a scuola.",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        oracionOriginal: "Mia madre e mio padre sono a casa.",
+        traduccionCorrecta: ["Mi", "madre", "y", "mi", "padre", "están", "en", "casa."],
+        bancoPalabras: ["Mi", "madre", "padre", "están", "y", "mi", "en", "casa.", "tío"]
     },
     {
         id: 38,
         leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "italiano",
-        oracionOriginal: "Fa bello oggi.",
-        traduccionCorrecta: ["Hace", "buen", "tiempo", "hoy."],
-        bancoPalabras: ["Hace", "buen", "tiempo", "hoy.", "mal", "frío", "calor"]
+        oracionOriginal: "Ho un fratello e una sorella.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["Tengo", "un", "hermano", "y", "una", "hermana.", "abuelo", "hijo"]
     },
-
-    // --- ITALIANO: Lección 4 ---
+    // Lección 4: Vocabulario de Viajes
     {
         id: 39,
         leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "italiano",
-        oracionOriginal: "Lei è la mia migliore amica.",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        oracionOriginal: "Dov'è la stazione dei treni?",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "trenes?"],
+        bancoPalabras: ["la", "¿Dónde", "estación", "está", "de", "trenes?", "aeropuerto", "el"]
     },
     {
         id: 40,
         leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "italiano",
-        oracionOriginal: "Mangiamo insieme.",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        oracionOriginal: "Ho bisogno del passaporto per il viaggio.",
+        traduccionCorrecta: ["Necesito", "el", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["para", "Necesito", "el", "pasaporte", "boleto", "viaje.", "hotel", "un"]
     },
 
     // =============================================
-    // --- PORTUGUÉS: Lección 2 ---
+    // --- PORTUGUÉS ---
     // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 41,
-        leccionId: 2,
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
         idioma: "portugues",
-        oracionOriginal: "Meu nome é João.",
-        traduccionCorrecta: ["Mi", "nombre", "es", "João."],
-        bancoPalabras: ["Mi", "nombre", "es", "João.", "apellido", "tu", "ella"]
+        oracionOriginal: "Bom dia, como você está hoje?",
+        traduccionCorrecta: ["Buenos", "días,", "¿cómo", "estás", "hoy?"],
+        bancoPalabras: ["Buenos", "¿cómo", "días,", "hoy?", "estás", "tardes,", "mal"]
     },
     {
         id: 42,
-        leccionId: 2,
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
         idioma: "portugues",
-        oracionOriginal: "Eu gosto de música.",
-        traduccionCorrecta: ["Me", "gusta", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "la", "música.", "el", "cine", "libros"]
+        oracionOriginal: "Muito obrigado e até logo.",
+        traduccionCorrecta: ["Muchas", "gracias", "y", "hasta", "luego."],
+        bancoPalabras: ["Muchas", "hasta", "gracias", "y", "luego.", "hola", "por", "favor"]
     },
-
-    // --- PORTUGUÉS: Lección 3 ---
+    // Lección 2: Presentaciones
     {
         id: 43,
-        leccionId: 3,
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "portugues",
-        oracionOriginal: "Vou à escola.",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        oracionOriginal: "Meu nome é Lucas e sou estudante.",
+        traduccionCorrecta: ["Mi", "nombre", "es", "Lucas", "y", "soy", "estudiante."],
+        bancoPalabras: ["Lucas", "Mi", "nombre", "es", "y", "profesor.", "soy", "estudiante."]
     },
     {
         id: 44,
-        leccionId: 3,
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "portugues",
-        oracionOriginal: "Está bonito hoje.",
-        traduccionCorrecta: ["Hace", "buen", "tiempo", "hoy."],
-        bancoPalabras: ["Hace", "buen", "tiempo", "hoy.", "mal", "frío", "calor"]
+        oracionOriginal: "Prazer em conhecê-lo, venho do Brasil.",
+        traduccionCorrecta: ["Mucho", "gusto,", "vengo", "de", "Brasil."],
+        bancoPalabras: ["Mucho", "gusto,", "de", "vengo", "Brasil.", "vivo", "en", "Portugal."]
     },
-
-    // --- PORTUGUÉS: Lección 4 ---
+    // Lección 3: Vocabulario de Familia
     {
         id: 45,
-        leccionId: 4,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "portugues",
-        oracionOriginal: "Ela é minha melhor amiga.",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        oracionOriginal: "Minha mãe e meu pai estão em casa.",
+        traduccionCorrecta: ["Mi", "madre", "y", "mi", "padre", "están", "en", "casa."],
+        bancoPalabras: ["en", "Mi", "padre", "madre", "y", "mi", "están", "casa.", "escola."]
     },
     {
         id: 46,
-        leccionId: 4,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "portugues",
-        oracionOriginal: "Nós comemos juntos.",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        oracionOriginal: "Eu tenho um irmão e uma irmã.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["un", "Tengo", "hermano", "hermana.", "y", "una", "hijo", "primo"]
     },
-
-    // =============================================
-    // --- CHINO: Lecciones 2, 3 y 4 ---
-    // =============================================
+    // Lección 4: Vocabulario de Viajes
     {
         id: 47,
-        leccionId: 2,
-        idioma: "chino",
-        oracionOriginal: "我叫王明。",
-        traduccionCorrecta: ["Me", "llamo", "Wang", "Ming."],
-        bancoPalabras: ["Me", "llamo", "Wang", "Ming.", "llamas", "él", "se"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "portugues",
+        oracionOriginal: "Onde fica a estação de trem?",
+        traduccionCorrecta: ["¿Dónde", "queda", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["la", "¿Dónde", "queda", "estación", "de", "tren?", "aeroporto", "o"]
     },
     {
         id: 48,
-        leccionId: 2,
-        idioma: "chino",
-        oracionOriginal: "我喜欢音乐。",
-        traduccionCorrecta: ["Me", "gusta", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "la", "música.", "el", "cine", "libros"]
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "portugues",
+        oracionOriginal: "Preciso do meu passaporte para a viagem.",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["para", "Necesito", "el", "mi", "pasaporte", "viaje.", "bilhete", "hotel"]
     },
+
+    // =============================================
+    // --- JAPONÉS ---
+    // =============================================
+    // Lección 1: Frases Básicas
     {
         id: 49,
-        leccionId: 3,
-        idioma: "chino",
-        oracionOriginal: "我去学校。",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "japones",
+        oracionOriginal: "おはようございます、お元気ですか？",
+        traduccionCorrecta: ["Buenos", "días,", "¿cómo", "estás?"],
+        bancoPalabras: ["Buenos", "¿cómo", "días,", "estás?", "noches,", "mal", "hola"]
     },
     {
         id: 50,
-        leccionId: 3,
-        idioma: "chino",
-        oracionOriginal: "今天天气很好。",
-        traduccionCorrecta: ["Hace", "buen", "tiempo", "hoy."],
-        bancoPalabras: ["Hace", "buen", "tiempo", "hoy.", "mal", "frío", "calor"]
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "japones",
+        oracionOriginal: "ありがとうございます、さようなら。",
+        traduccionCorrecta: ["Muchas", "gracias,", "adiós."],
+        bancoPalabras: ["gracias,", "Muchas", "adiós.", "por", "favor,", "hola"]
     },
+    // Lección 2: Presentaciones
     {
         id: 51,
-        leccionId: 4,
-        idioma: "chino",
-        oracionOriginal: "她是我最好的朋友。",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "japones",
+        oracionOriginal: "はじめまして、わたしはたなかです。",
+        traduccionCorrecta: ["Mucho", "gusto,", "yo", "soy", "Tanaka."],
+        bancoPalabras: ["Tanaka.", "Mucho", "gusto,", "yo", "él", "soy", "profesor"]
     },
     {
         id: 52,
-        leccionId: 4,
-        idioma: "chino",
-        oracionOriginal: "我们一起吃饭。",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "japones",
+        oracionOriginal: "わたしはにほんからきました、がくせいです。",
+        traduccionCorrecta: ["Vengo", "de", "Japón", "y", "soy", "estudiante."],
+        bancoPalabras: ["Vengo", "de", "Japón", "y", "soy", "estudiante.", "profesor.", "vivo"]
     },
-
-    // =============================================
-    // --- JAPONÉS: Lecciones 2, 3 y 4 ---
-    // =============================================
+    // Lección 3: Vocabulario de Familia
     {
         id: 53,
-        leccionId: 2,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "japones",
-        oracionOriginal: "わたしはたなかです。",
-        traduccionCorrecta: ["Me", "llamo", "Tanaka."],
-        bancoPalabras: ["Me", "llamo", "Tanaka.", "llamas", "él", "se", "yo"]
+        oracionOriginal: "ちちとはははいえにいます。",
+        traduccionCorrecta: ["Mi", "padre", "y", "mi", "madre", "están", "en", "casa."],
+        bancoPalabras: ["padre", "Mi", "y", "mi", "madre", "están", "en", "casa.", "escuela."]
     },
     {
         id: 54,
-        leccionId: 2,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "japones",
-        oracionOriginal: "おんがくがすきです。",
-        traduccionCorrecta: ["Me", "gusta", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "la", "música.", "el", "cine", "libros"]
+        oracionOriginal: "わたしにはあにとあねがいます。",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["un", "Tengo", "hermano", "y", "una", "hermana.", "hijo", "abuelo"]
     },
+    // Lección 4: Vocabulario de Viajes
     {
         id: 55,
-        leccionId: 3,
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "japones",
-        oracionOriginal: "がっこうにいきます。",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        oracionOriginal: "えきはどこですか？",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["está", "¿Dónde", "la", "de", "estación", "tren?", "hotel?", "el"]
     },
     {
         id: 56,
-        leccionId: 3,
-        idioma: "japones",
-        oracionOriginal: "きょうはいいてんきです。",
-        traduccionCorrecta: ["Hace", "buen", "tiempo", "hoy."],
-        bancoPalabras: ["Hace", "buen", "tiempo", "hoy.", "mal", "frío", "calor"]
-    },
-    {
-        id: 57,
         leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "japones",
-        oracionOriginal: "かのじょはわたしのしんゆうです。",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
-    },
-    {
-        id: 58,
-        leccionId: 4,
-        idioma: "japones",
-        oracionOriginal: "いっしょにたべます。",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        oracionOriginal: "りょこうのためにパスポートがひつようです。",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["el", "Necesito", "pasaporte", "para", "mi", "viaje.", "boleto", "avión"]
     },
 
     // =============================================
-    // --- COREANO: Lecciones 2, 3 y 4 ---
+    // --- COREANO ---
     // =============================================
+    // Lección 1: Frases Básicas
+    {
+        id: 57,
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "coreano",
+        oracionOriginal: "안녕하세요, 잘 지내세요?",
+        traduccionCorrecta: ["Hola,", "¿cómo", "estás?"],
+        bancoPalabras: ["Hola,", "¿cómo", "estás?", "adiós,", "bien", "gracias"]
+    },
+    {
+        id: 58,
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "coreano",
+        oracionOriginal: "정말 감사합니다, 안녕히 계세요.",
+        traduccionCorrecta: ["Muchas", "gracias,", "adiós."],
+        bancoPalabras: ["Muchas", "gracias,", "adiós.", "por", "favor,", "hola"]
+    },
+    // Lección 2: Presentaciones
     {
         id: 59,
         leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "coreano",
-        oracionOriginal: "저는 김민준입니다.",
-        traduccionCorrecta: ["Me", "llamo", "Kim", "Minjun."],
-        bancoPalabras: ["Me", "llamo", "Kim", "Minjun.", "llamas", "él", "se"]
+        oracionOriginal: "제 이름은 민준이고 학생입니다.",
+        traduccionCorrecta: ["Mi", "nombre", "es", "Minjun", "y", "soy", "estudiante."],
+        bancoPalabras: ["Minjun", "Mi", "nombre", "es", "y", "soy", "estudiante.", "profesor"]
     },
     {
         id: 60,
         leccionId: 2,
+        tituloLeccion: "Presentaciones",
         idioma: "coreano",
-        oracionOriginal: "저는 음악을 좋아해요.",
-        traduccionCorrecta: ["Me", "gusta", "la", "música."],
-        bancoPalabras: ["Me", "gusta", "la", "música.", "el", "cine", "libros"]
+        oracionOriginal: "만나서 반가워요, 한국에서 왔어요.",
+        traduccionCorrecta: ["Mucho", "gusto,", "vengo", "de", "Corea."],
+        bancoPalabras: ["Mucho", "de", "gusto,", "vengo", "Corea.", "vivo", "en", "Seúl"]
     },
+    // Lección 3: Vocabulario de Familia
     {
         id: 61,
         leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "coreano",
-        oracionOriginal: "학교에 가요.",
-        traduccionCorrecta: ["Voy", "a", "la", "escuela."],
-        bancoPalabras: ["Voy", "a", "la", "escuela.", "casa", "al", "trabajo"]
+        oracionOriginal: "아버지와 어머니는 집에 계십니다.",
+        traduccionCorrecta: ["Mi", "padre", "y", "mi", "madre", "están", "en", "casa."],
+        bancoPalabras: ["padre", "Mi", "y", "madre", "mi", "están", "en", "casa.", "escuela."]
     },
     {
         id: 62,
         leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
         idioma: "coreano",
-        oracionOriginal: "오늘 날씨가 좋아요.",
-        traduccionCorrecta: ["Hace", "buen", "tiempo", "hoy."],
-        bancoPalabras: ["Hace", "buen", "tiempo", "hoy.", "mal", "frío", "calor"]
+        oracionOriginal: "저는 형과 누나가 있습니다.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["Tengo", "hermano", "un", "y", "una", "hermana.", "hijo", "amigo"]
     },
+    // Lección 4: Vocabulario de Viajes
     {
         id: 63,
         leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "coreano",
-        oracionOriginal: "그녀는 내 절친한 친구예요.",
-        traduccionCorrecta: ["Ella", "es", "mi", "mejor", "amiga."],
-        bancoPalabras: ["Ella", "es", "mi", "mejor", "amiga.", "hermana", "prima"]
+        oracionOriginal: "기차역이 어디에 있습니까?",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["está", "¿Dónde", "la", "estación", "de", "tren?", "hotel?", "el"]
     },
     {
         id: 64,
         leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
         idioma: "coreano",
-        oracionOriginal: "우리는 함께 먹어요.",
-        traduccionCorrecta: ["Comemos", "juntos."],
-        bancoPalabras: ["Comemos", "juntos.", "vivimos", "trabajamos", "separados"]
+        oracionOriginal: "여행을 위해 여권이 필요합니다.",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["el", "Necesito", "pasaporte", "para", "viaje.", "mi", "boleto", "avión"]
+    },
+
+    // =============================================
+    // --- RUSO ---
+    // =============================================
+    // Lección 1: Frases Básicas
+    {
+        id: 65,
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "ruso",
+        oracionOriginal: "Здравствуйте, как ваши дела?",
+        traduccionCorrecta: ["Hola,", "¿cómo", "estás", "hoy?"],
+        bancoPalabras: ["Hola,", "adiós,", "¿cómo", "hoy?", "estás", "bien", "mal"]
+    },
+    {
+        id: 66,
+        leccionId: 1,
+        tituloLeccion: "Frases Básicas",
+        idioma: "ruso",
+        oracionOriginal: "Большое спасибо и до свидания.",
+        traduccionCorrecta: ["Muchas", "gracias", "y", "hasta", "luego."],
+        bancoPalabras: ["Muchas", "y", "gracias", "hola", "hasta", "luego.", "por", "favor"]
+    },
+    // Lección 2: Presentaciones
+    {
+        id: 67,
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "ruso",
+        oracionOriginal: "Меня зовут Иван и я студент.",
+        traduccionCorrecta: ["Me", "llamo", "Iván", "y", "soy", "estudiante."],
+        bancoPalabras: ["Iván", "Me", "profesor.", "llamo", "y", "soy", "estudiante.", "tu"]
+    },
+    {
+        id: 68,
+        leccionId: 2,
+        tituloLeccion: "Presentaciones",
+        idioma: "ruso",
+        oracionOriginal: "Очень приятно, я из России.",
+        traduccionCorrecta: ["Mucho", "gusto,", "vengo", "de", "Rusia."],
+        bancoPalabras: ["Mucho", "gusto,", "vengo", "de", "Rusia.", "vivo", "en", "España."]
+    },
+    // Lección 3: Vocabulario de Familia
+    {
+        id: 69,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "ruso",
+        oracionOriginal: "Моя мама и мой папа дома.",
+        traduccionCorrecta: ["Mi", "madre", "y", "mi", "padre", "están", "en", "casa."],
+        bancoPalabras: ["en", "Mi", "padre", "madre", "escuela.", "y", "mi", "están", "casa.", "tío"]
+    },
+    {
+        id: 70,
+        leccionId: 3,
+        tituloLeccion: "Vocabulario de Familia",
+        idioma: "ruso",
+        oracionOriginal: "У меня есть брат и сестра.",
+        traduccionCorrecta: ["Tengo", "un", "hermano", "y", "una", "hermana."],
+        bancoPalabras: ["un", "Tengo", "hermano", "y", "hijo", "una", "hermana.", "abuelo"]
+    },
+    // Lección 4: Vocabulario de Viajes
+    {
+        id: 71,
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "ruso",
+        oracionOriginal: "Где находится вокзал?",
+        traduccionCorrecta: ["¿Dónde", "está", "la", "estación", "de", "tren?"],
+        bancoPalabras: ["está", "¿Dónde", "la", "de", "estación", "tren?", "hotel?", "el"]
+    },
+    {
+        id: 72,
+        leccionId: 4,
+        tituloLeccion: "Vocabulario de Viajes",
+        idioma: "ruso",
+        oracionOriginal: "Мне нужен паспорт для поездки.",
+        traduccionCorrecta: ["Necesito", "mi", "pasaporte", "para", "el", "viaje."],
+        bancoPalabras: ["el", "Necesito", "pasaporte", "para", "mi", "viaje.", "boleto", "avión"]
     }
 ];

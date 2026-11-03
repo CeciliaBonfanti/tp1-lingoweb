@@ -46,9 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const esUsuarioActual = user.id === usuarioActivo.id;
             const nombreMostrar = esUsuarioActual ? `${user.nombre || user.usuario} (Tú)` : (user.nombre || user.usuario);
             
-            // Determinar estado según el puesto (ej: los primeros 5 ascienden)
-            const estado = puesto <= 5 ? 'Zona de Ascenso' : 'Zona Normal';
-
             // Construir la fila de la tabla
             const tr = document.createElement('tr');
             if (esUsuarioActual) {
@@ -60,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="avatar">${iniciales}</td>
                 <td>${nombreMostrar}</td>
                 <td>${user.xp ?? 0} XP</td>
-                <td>${estado}</td>
             `;
 
             tbody.appendChild(tr);

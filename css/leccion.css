@@ -105,6 +105,24 @@ body {
     text-align: center;
 }
 
+/* BANNER DE INFORMACIÓN DEL ESTUDIANTE */
+.banner-usuario-leccion {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaciado-medio);
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    padding: 6px var(--espaciado-medio);
+    border-radius: 20px;
+    margin-bottom: var(--espaciado-medio);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.banner-usuario-leccion .separador-info {
+    color: var(--color-texto-mutado);
+    opacity: 0.6;
+}
+
 .area-ejercicio h2 {
     margin-bottom: var(--espaciado-medio);
 }
@@ -306,4 +324,97 @@ body {
         padding: 10px 16px;
         font-size: var(--texto-normal);
     }
+}
+
+/* ========================================== */
+/* PANTALLA DE RESUMEN FINAL                  */
+/* ========================================== */
+
+.pantalla-resumen {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: var(--espaciado-medio);
+}
+
+.pantalla-resumen.oculta {
+    display: none;
+}
+
+.resumen-tarjeta {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: var(--espaciado-seccion) var(--espaciado-grande);
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.resumen-emoji {
+    font-size: 3rem;
+    margin: 0 0 var(--espaciado-chico);
+}
+
+.resumen-tarjeta h2 {
+    font-size: var(--texto-titulo);
+    color: var(--color-primario);
+    margin: 0 0 var(--espaciado-chico);
+}
+
+.resumen-subtitulo {
+    color: var(--color-texto-mutado);
+    margin: 0 0 var(--espaciado-seccion);
+    font-size: var(--texto-normal);
+}
+
+.resumen-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+    margin-bottom: var(--espaciado-seccion);
+    text-align: left;
+}
+
+.resumen-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-medio);
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: var(--espaciado-medio) var(--espaciado-grande);
+}
+
+.resumen-stat-icono {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.resumen-stat-label {
+    display: block;
+    font-size: var(--texto-chico);
+    color: var(--color-texto-mutado);
+}
+
+.resumen-stat-valor {
+    display: block;
+    font-size: var(--texto-subtitulo);
+    color: var(--color-texto-principal);
+}
+
+.resumen-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+}
+
+.resumen-acciones .btn {
+    width: 100%;
+    text-align: center;
 }

@@ -69,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         btnComprarProtector.addEventListener('click', () => {
             const costo = 150;
 
+            if (usuarioActivo.tieneProtectorRacha) {
+                alert('¡Ya tienes un protector de racha activo 🛡️! No necesitas adquirir otro.');
+                return;
+            }
+
             if ((usuarioActivo.xp ?? 0) < costo) {
                 alert('¡No tenés suficiente XP! Necesitás al menos 150 XP para adquirir el protector de racha.');
                 return;

@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="dashboard.html"><img src="../imagenes/cancelar.png" alt="Cancelar lección"></a>
+        <a href="mapa.html" id="btn-cancelar-leccion"><img src="../imagenes/cancelar.png" alt="Cancelar lección"></a>
         <div class="indicador-idioma">
             <img src="../imagenes/bandera-de.png" alt="Idioma" class="bandera-chica" id="icono-idioma">
             <span class="nav-texto texto-idioma" id="titulo-idioma">Cargando...</span>
@@ -31,7 +31,13 @@
     
     <main class="contenedor-pagina">
         <section class="area-ejercicio">
-             <h2>Traduce la siguiente oración:</h2>
+            <header class="banner-usuario-leccion" id="banner-usuario-leccion">
+                <span class="texto-chico">👤 Estudiante: <strong id="leccion-usuario-nombre">Cargando...</strong></span>
+                <span class="separador-info">•</span>
+                <span class="texto-chico">⚡ Puntos: <strong id="leccion-usuario-xp">-- XP</strong></span>
+            </header>
+
+            <h2>Traduce la siguiente oración:</h2>
     
             <article class="oracion">
                 <!-- Acá JavaScript va a inyectar la oración (ej: "Hello, nice to meet you") -->
@@ -73,7 +79,45 @@
             </div>
             <button id="btn-continuar-error" class="btn btn-error btn-accion">Rehacer</button> 
         </div>
-    </footer> 
+    </footer>
+
+    <!-- PANTALLA DE RESUMEN FINAL (oculta por defecto) -->
+    <div id="pantalla-resumen" class="pantalla-resumen oculta" role="dialog" aria-modal="true" aria-labelledby="resumen-titulo">
+        <div class="resumen-tarjeta">
+            <p class="resumen-emoji">🎉</p>
+            <h2 id="resumen-titulo">¡Lección completada!</h2>
+            <p class="resumen-subtitulo" id="resumen-subtitulo">Hiciste un gran trabajo hoy.</p>
+
+            <div class="resumen-stats">
+                <div class="resumen-stat">
+                    <span class="resumen-stat-icono">⚡</span>
+                    <div>
+                        <span class="resumen-stat-label">XP ganados</span>
+                        <strong class="resumen-stat-valor" id="resumen-xp">+0 XP</strong>
+                    </div>
+                </div>
+                <div class="resumen-stat">
+                    <span class="resumen-stat-icono">🔥</span>
+                    <div>
+                        <span class="resumen-stat-label">Racha actual</span>
+                        <strong class="resumen-stat-valor" id="resumen-racha">0 días</strong>
+                    </div>
+                </div>
+                <div class="resumen-stat">
+                    <span class="resumen-stat-icono">✅</span>
+                    <div>
+                        <span class="resumen-stat-label">Respuestas correctas</span>
+                        <strong class="resumen-stat-valor" id="resumen-correctas">0 / 0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resumen-acciones">
+                <a id="btn-resumen-mapa" href="mapa.html" class="btn btn-primario">Volver al Mapa</a>
+                <a href="dashboard.html" class="btn btn-secundario">Ir al Dashboard</a>
+            </div>
+        </div>
+    </div> 
 
     <script type="module" src="../js/view/leccion.js"></script>
 </body>

@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Las nuevas contraseñas no coinciden.');
                     return;
                 }
-                if (inputPassNueva.value.length < 3) {
-                    alert('La nueva contraseña debe tener al menos 3 caracteres.');
+                if (inputPassNueva.value.length < 8) {
+                    alert('La nueva contraseña debe tener al menos 8 caracteres.');
                     return;
                 }
 

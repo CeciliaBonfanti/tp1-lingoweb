@@ -36,7 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (textoRachaActual) {
         if (rachaActual > 0) {
-            textoRachaActual.textContent = `¡Estás en racha! Practicaste ${rachaActual} días seguidos.`;
+            const palabraDia = rachaActual === 1 ? 'día' : 'días';
+            const palabraSeguido = rachaActual === 1 ? 'seguido' : 'seguidos';
+            textoRachaActual.textContent = `¡Estás en racha! Practicaste ${rachaActual} ${palabraDia} ${palabraSeguido}.`;
         } else {
             textoRachaActual.textContent = `¡Aún no tenés racha activa! Completá una lección hoy para empezar.`;
         }
@@ -61,4 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
             p.textContent = `Total de lecciones esta semana: ${totalCompletadas}`;
         }
     });
+
+    // 6. Inyectar estado de protección de racha
+    const statProtector = document.getElementById('stat-protector');
+    const btnAccionRacha = document.getElementById('btn-accion-racha');
+
+    if (statProtector) {
+        if (usuarioActivo.tieneProtectorRacha) {
+            statProtector.textContent = 'Activo 🛡️';
+            if (btnAccionRacha) {
+                btnAccionRacha.textContent = 'Racha protegida';
+                btnAccionRacha.classList.remove('btn-primario');
+                btnAccionRacha.classList.add('btn-secundario');
+                btnAccionRacha.href = 'dashboard.html';
+            }
+        } else {
+            statProtector.textContent = 'Sin protección ⚠️';
+            if (btnAccionRacha) {
+                btnAccionRacha.textContent = 'Proteger en Tienda';
+                btnAccionRacha.href = 'tienda.html';
+            }
+        }
+    }
 });
