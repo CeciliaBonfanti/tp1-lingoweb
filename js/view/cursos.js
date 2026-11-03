@@ -54,18 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
     cursos.forEach((curso) => {
         // Calculamos el progreso según las lecciones completadas de este idioma
         const preguntasCurso = preguntas.filter(p => p.idioma === curso.id);
-        const totalLecciones = preguntasCurso.length > 0 ? preguntasCurso.length : 1;
+        const leccionIdsUnicos = [...new Set(preguntasCurso.map(p => p.leccionId))];
+        const totalLecciones = leccionIdsUnicos.length > 0 ? leccionIdsUnicos.length : 1;
 
         let completadas = 0;
-        for (let i = 1; i <= totalLecciones; i++) {
-            const clave = `curso_${curso.id}_leccion_${i}`;
+        leccionIdsUnicos.forEach(leccionId => {
+            const clave = `${curso.id}_${leccionId}`;
             if (leccionesCompletadas[clave]?.completed) {
                 completadas++;
             }
-        }
+        });
 
         const progresoCalculado = Math.round((completadas / totalLecciones) * 100);
-        const progresoFinal = curso.progreso !== undefined ? curso.progreso : progresoCalculado;
+        const progresoFinal = progresoCalculado;
 
         let textoBoton = 'Continuar';
         if (progresoFinal === 0) {

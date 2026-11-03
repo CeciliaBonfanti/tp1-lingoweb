@@ -15,18 +15,28 @@
   text-decoration: none;
 }
 
+/* Estado Deshabilitado */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}
+
 /* Botón Primario con Glow Esmeralda */
 .btn-primario {
   background-color: var(--color-primario);
   color: var(--color-fondo); /* Texto oscuro para contrastar con el botón brillante */
 }
 
-.btn-primario:hover {
+.btn-primario:hover:not(:disabled) {
   background-color: var(--color-primario-hover);
   box-shadow: 0 0 15px rgba(56, 199, 180, 0.4);
 }
 
-.btn-primario:active {
+.btn-primario:active:not(:disabled) {
   transform: scale(0.98);
 }
 
@@ -36,12 +46,12 @@
   color: var(--color-fondo);
 }
 
-.btn-secundario:hover {
+.btn-secundario:hover:not(:disabled) {
   background-color: var(--color-secundario-hover);
   box-shadow: 0 0 15px rgba(244, 162, 97, 0.4);
 }
 
-.btn-secundario:active {
+.btn-secundario:active:not(:disabled) {
   transform: scale(0.98);
 }
 

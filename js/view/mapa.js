@@ -54,11 +54,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contenedor) {
         contenedor.innerHTML = ''; // Limpiamos por si hay algo estático
 
-        // Filtramos las preguntas asociadas a este idioma
-        const leccionesDelCurso = preguntas.filter(p => p.idioma === cursoId);
+        // Filtramos las preguntas asociadas a este idioma y agrupamos por leccionId único
+        const preguntasCurso = preguntas.filter(p => p.idioma === cursoId);
 
-        if (leccionesDelCurso.length > 0) {
-            leccionesDelCurso.forEach((leccion, index) => {
+        // Obtenemos los leccionIds únicos, en orden ascendente
+        const leccionIdsUnicos = [...new Set(preguntasCurso.map(p => p.leccionId))].sort((a, b) => a - b);
+
+        // Cargamos el estado de progreso de todas las lecciones una sola vez
+        const leccionesCompletadas = getData('leccionesCompletadas') || {};
+
+        if (leccionIdsUnicos.length > 0) {
+            leccionIdsUnicos.forEach((leccionId, index) => {
+                const clave = `${cursoId}_${leccionId}`;
+                const progresoDato = leccionesCompletadas[clave];
+
+                // Calcular porcentaje y texto del botón según el estado de la lección
+                let porcentaje = 0;
+                let textoBtnLeccion = 'Comenzar Lección';
+
+                if (progresoDato) {
+                    if (progresoDato.completed) {
+                        porcentaje = 100;
+                        textoBtnLeccion = 'Repasar';
+                    } else if (progresoDato.total > 0) {
+                        porcentaje = Math.round(((progresoDato.avance || 0) / progresoDato.total) * 100);
+                        textoBtnLeccion = porcentaje > 0 ? 'Continuar' : 'Comenzar Lección';
+                    }
+                }
+
                 const tarjeta = document.createElement('article');
                 tarjeta.classList.add('tarjeta');
                 tarjeta.innerHTML = `
@@ -66,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h2>Lección ${index + 1}</h2>
                     </div>
                     <p class="texto-chico">Práctica de traducción y vocabulario.</p>
-                    <p class="nivel-texto">Oración: "${leccion.oracionOriginal}"</p>
-                    <a href="leccion.html?curso=${cursoId}&leccion=${index + 1}" class="btn btn-primario">Comenzar Lección</a>
+                    <p class="nivel-texto">Progreso: ${porcentaje}%</p>
+                    <a href="leccion.html?curso=${cursoId}&leccion=${leccionId}" class="btn btn-primario">${textoBtnLeccion}</a>
                 `;
 
                 // Interceptar click si no tiene vidas disponibles

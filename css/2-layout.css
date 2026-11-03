@@ -73,3 +73,33 @@
   transform: translateY(-4px);
   border-color: var(--color-primario); /* Se ilumina el borde al pasar el mouse */
 }
+
+/* Cabecera y textos comunes dentro de las tarjetas */
+.tarjeta-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaciado-chico);
+  margin-bottom: var(--espaciado-chico);
+}
+
+.nivel-texto {
+  font-weight: 600;
+  margin: var(--espaciado-chico) 0 var(--espaciado-medio) 0;
+}
+
+/* Alineación de tarjetas y botones al pie */
+.grilla-tarjetas .tarjeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.grilla-tarjetas .tarjeta .btn {
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.grilla-tarjetas .tarjeta > div:has(.btn) {
+  margin-top: auto;
+  width: 100%;
+}

@@ -129,25 +129,39 @@ body {
     margin-bottom: var(--espaciado-grande);
 }
 
-/* BLOQUES DE PALABRAS */
+/* BLOQUES DE PALABRAS (BOTONES) */
 .palabra {
     display: inline-block;
     padding: 12px 20px;
     background-color: var(--color-superficie);
     border: 2px solid var(--color-borde);
     border-radius: var(--radio-borde);
+    font-family: inherit;
     font-weight: 600;
     font-size: var(--texto-normal);
     color: var(--color-texto-principal);
     cursor: pointer;
     user-select: none;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
+    outline: none;
 }
 
-.palabra:hover {
+.palabra:hover:not(:disabled) {
     border-color: var(--color-primario);
     transform: translateY(-2px);
     background-color: rgba(255, 255, 255, 0.05);
+}
+
+.palabra:focus-visible {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 10px rgba(56, 199, 180, 0.3);
+}
+
+.palabra:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
 }
 
 /* BANCO DE PALABRAS */
@@ -232,7 +246,7 @@ body {
     color: #ffffff;
 }
 
-.btn-error:hover {
+.btn-error:hover:not(:disabled) {
     background-color: #d62828;
     box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
 }
